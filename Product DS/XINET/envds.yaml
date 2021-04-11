@@ -2634,6 +2634,9 @@ selectors:
       Volume Settings Section In New System Volume Page:
         - '//iframe[@id=''waFrame'']'
         - '//th[text()=''Volume Settings'']'
+      Volume Settings New Folder Input Field:
+        - '//iframe[@id=''waFrame'']'
+        - '//input[@name=''newfolder'']'
       File Share Options Section:
         - '//iframe[@id=''waFrame'']'
         - '//th[text()="File Share Options"]'
@@ -3660,7 +3663,7 @@ selectors:
       Volumes Summary Backup Folder Delete Volume Button:
         - '//iframe[@id=''waFrame'']'
         - '//input[contains(@onclick,$folderName)]'
-      Volumes Summary Backup Folder Text wo Iframe: '//th[.=$folderName]'
+      Volumes Summary Backup Folder Text with created folder name: '//th[.=$folderName]'
       Volumes Summary Backup Folder Text:
         - '//iframe[@id=''waFrame'']'
         - '//th[.=$folderName]'
