@@ -3662,13 +3662,10 @@ selectors:
       Volumes Summary Backup Folder Details Content: '//a[contains(text(), ''wnv_quickbkup'')]'
       Volumes Summary Backup Folder Delete Volume Button:
         - '//iframe[@id=''waFrame'']'
-        - '//input[contains(@onclick,$folderName)]'
+        - '//input[contains(@onclick, $folderName)]'
       Volumes Summary Backup Folder Text with created folder name:
         - '//iframe[@id=''waFrame'']'
-        - '//href[.=$folderName]'
-      Volumes Summary Backup Folder Text:
-        - '//iframe[@id=''waFrame'']'
-        - '//th[.=$folderName]'
+        - '//a[contains(@href, $folderName)]'
     name: SERVER > BACKUP
   - group: SERVER > Database > settings
     name: SERVER > Database > settings
