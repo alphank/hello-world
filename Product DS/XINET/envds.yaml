@@ -129,6 +129,12 @@ environments:
         credentialsId: ec2-user-key
         Port: 22
         name: SERVER Shell
+      - description: Local Shell
+        type: ssh
+        Host: localhost
+        credentialsId: ec2-user-key
+        Port: 22
+        name: SERVER Shell
       - description: Xinet Portal user interface
         type: http
         credentials: qauser
@@ -475,7 +481,6 @@ credentials:
     id: root
   - type: sshkey
     username: ec2-user
-    password: ec2-user
     identity: 'https://e2efiles.s3.amazonaws.com/b0xzitb.pem'
     id: ec2-user-key
 variables:
@@ -3645,21 +3650,12 @@ selectors:
         for')]/i[contains(text(), $userName)]
     name: SERVER > VOLUMES/USERS > Plugins Page
   - selectors:
-      New System Volume Create Folder Input: '//input[@name=''newfolder'']'
-      New System Volume Support FPO View Checkbox: '//input[@name=''v_afpdofpo'']'
-      New System Volume Support WEB View Checkbox: '//input[@name=''v_afpdoweb'']'
-      New System Volume Make Global WEB Volume Checkbox: '//input[@name=''v_global'']'
-      New System Volume Create Folder Button: '//button[.=''Create Folder'']'
-      New System Volume Submit Button: '//input[@name=''vsubmit'']'
-      New System Volume Attributes Submit Button: '//input[@name=''submit'']'
       Set Backup Dir Root Folder Text: '//a[contains(text(), ''New Backup Directory:'')]'
       Set Backup Dir Folders Dropdown: '//select[@name=''subdir'']'
       Set Backup Dir Folders xinetVols Option: '//option[.=''xinetVols'']'
       Set Backup Dir Folders backup_folder Option: '//option[.=$folderName]'
       Set Backup Dir Set Directory Button: '//input[@name=''newdirsubmit'']'
       Set Backup Dir Set Success Text: '//i[.=''Backup Path Saved'']'
-      Database Backup Quick Backup Now Button: '//input[@name=''backupdoquick'']'
-      Database Backup Past Quick Backups Text: '//td[contains(text(), ''wnv_quickbkup'')]'
       Volumes Summary Backup Folder Details Content:
         - '//iframe[@id=''waFrame'']'
         - '//a[contains(text(), ''wnv_quickbkup'')]'
