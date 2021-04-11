@@ -3665,7 +3665,7 @@ selectors:
         - '//input[contains(@onclick,$folderName)]'
       Volumes Summary Backup Folder Text with created folder name:
         - '//iframe[@id=''waFrame'']'
-        - '//th[.=$folderName]'
+        - '//href[.=$folderName]'
       Volumes Summary Backup Folder Text:
         - '//iframe[@id=''waFrame'']'
         - '//th[.=$folderName]'
