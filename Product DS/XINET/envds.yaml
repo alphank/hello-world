@@ -129,12 +129,6 @@ environments:
         credentialsId: ec2-user-key
         Port: 22
         name: SERVER Shell
-      - description: Local Shell
-        type: ssh
-        Host: localhost
-        credentialsId: ec2-user-key
-        Port: 22
-        name: SERVER Shell
       - description: Xinet Portal user interface
         type: http
         credentials: qauser
