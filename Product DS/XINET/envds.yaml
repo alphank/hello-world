@@ -3663,7 +3663,9 @@ selectors:
       Volumes Summary Backup Folder Delete Volume Button:
         - '//iframe[@id=''waFrame'']'
         - '//input[contains(@onclick,$folderName)]'
-      Volumes Summary Backup Folder Text with created folder name: '//th[.=$folderName]'
+      Volumes Summary Backup Folder Text with created folder name:
+        - '//iframe[@id=''waFrame'']'
+        - '//th[.=$folderName]'
       Volumes Summary Backup Folder Text:
         - '//iframe[@id=''waFrame'']'
         - '//th[.=$folderName]'
