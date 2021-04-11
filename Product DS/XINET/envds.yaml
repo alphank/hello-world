@@ -475,6 +475,7 @@ credentials:
     id: root
   - type: sshkey
     username: ec2-user
+    password: ec2-user
     identity: 'https://e2efiles.s3.amazonaws.com/b0xzitb.pem'
     id: ec2-user-key
 variables:
