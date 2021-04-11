@@ -3659,7 +3659,9 @@ selectors:
       Set Backup Dir Set Success Text: '//i[.=''Backup Path Saved'']'
       Database Backup Quick Backup Now Button: '//input[@name=''backupdoquick'']'
       Database Backup Past Quick Backups Text: '//td[contains(text(), ''wnv_quickbkup'')]'
-      Volumes Summary Backup Folder Details Content: '//a[contains(text(), ''wnv_quickbkup'')]'
+      Volumes Summary Backup Folder Details Content:
+        - '//iframe[@id=''waFrame'']'
+        - '//a[contains(text(), ''wnv_quickbkup'')]'
       Volumes Summary Backup Folder Delete Volume Button:
         - '//iframe[@id=''waFrame'']'
         - '//input[contains(@onclick, $folderName)]'
