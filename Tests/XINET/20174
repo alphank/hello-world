@@ -1,0 +1,35 @@
+Feature: XINET-20174
+
+Scenario: XINET-20174 As an admin user I should be able to see only relevant folders on the target folder when I move SOLR DB
+
+As an admin user I should be able to see only relevant folders on the target folder when I move SOLR DB
+This is consistent because move solr db should only moves relevant folders
+
+# Preconditions
+Given quality bar version "20200115.1"
+Given environment "bugfix/XINET-20143" from "https://github.com/alphank/hello-world/blob/master/Product%20DS/XINET/envds.yaml"
+
+# Navigate to the Xinet Server
+Given browser "Chrome"
+When I open "«environment.SERVER.URL»"
+Then "Volume Table Information" should be displayed
+
+# Create a new folder to move solr db
+Given "folderName" default value is "test_«random_string(6)»"
+When I click on "DATABASE"
+And I wait for "1" seconds
+And I click on "searching"
+And I wait for "1" seconds
+And I click on "data location Folder"
+And I click on "data location New Folder option"
+And I wait for "1" seconds
+And I set "«folderName»" to "New Folder input textbox" value
+And I click on "Create Folder Button"
+And I wait for "3" seconds
+Then "the 'newFolderName' in the 'Subfolder' path" should be displayed
+
+# Move solr db to newly created folder and check only relevant folders are moved
+When I click on "Move Solr DB"
+And I wait for "10" seconds
+Then "Created Folder as option in Drop down" should be displayed
+And "Index Folder as option in Drop down" should be displayed
