@@ -2191,6 +2191,7 @@ selectors:
       the 'newFolderName' in the 'Subfolder' path: '//span[@id=''r_cwd0''][contains(text(),$newFolderName)]'
       Created Folder name in the Subfolder path: '//span[contains(.,$folderName)]'
       Data Folder in the Subfolder path: '//a[.=''data'']'
+      File Folder in the Subfolder path: '//a[.=''file'']'
       Created Folder as option in Drop down: '//select[@name=''subdir0'']//option[.=$folderName]'
       Index Folder as option in Drop down: '//select[@name=''subdir0'']//option[.=''index'']'
     name: SERVER > VOLUMES/USERS > User Volumes
