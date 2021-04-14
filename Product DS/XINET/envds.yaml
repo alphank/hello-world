@@ -2189,7 +2189,7 @@ selectors:
         - '//iframe[@id=''waFrame'']'
         - '//option[contains(.,''( New Folder )'')]'
       the 'newFolderName' in the 'Subfolder' path: '//span[@id=''r_cwd0''][contains(text(),$newFolderName)]'
-      Created Folder name in the Subfolder path: boolean(//span[contains(., $folderName)]) and not(boolean(//select[@name=''subdir0'' and contains(., $folderName)]))
+      Created Folder name in the Subfolder path: //span[contains(.,$folderName)]
       Created Folder as option in Drop down: '//select[@name=''subdir0'']//option[.=$folderName]'
       Index Folder as option in Drop down: '//select[@name=''subdir0'']//option[.=''index'']'
     name: SERVER > VOLUMES/USERS > User Volumes
