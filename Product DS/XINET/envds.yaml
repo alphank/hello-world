@@ -424,7 +424,7 @@ environments:
       - description: Xinet Server
         type: http
         credentials: nativeadmin
-        URL: 'http://nativeadmin:nativeadmin@10.187.253.79/webnative/listdir'
+        URL: 'http://nativeadmin:nativeadmin@10.187.241.47/webnative/listdir'
         name: SERVER
 credentials:
   - type: basic
