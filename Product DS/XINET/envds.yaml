@@ -426,6 +426,16 @@ environments:
         credentials: nativeadmin
         URL: 'http://nativeadmin:nativeadmin@10.187.241.47/webnative/listdir'
         name: SERVER
+  - name: bugfix/XINET-20142
+    description: 'Env for XINET-20142'
+    type: QA
+    automated: false
+    endpoints:
+      - description: Xinet Server
+        type: http
+        credentials: nativeadmin
+        URL: 'http://nativeadmin:nativeadmin@10.187.215.248/webnative/listdir'
+        name: SERVER
 credentials:
   - type: basic
     username: qauser
