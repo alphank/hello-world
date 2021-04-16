@@ -434,7 +434,7 @@ environments:
       - description: Xinet Server
         type: http
         credentials: nativeadmin
-        URL: 'http://nativeadmin:nativeadmin@10.187.215.248/webnative/listdir'
+        URL: 'http://nativeadmin:nativeadmin@10.187.233.200/webnative/listdir'
         name: SERVER
 credentials:
   - type: basic
@@ -2280,6 +2280,7 @@ selectors:
       Pause Solr process: '//input[@name="solrstop"]'
       Disable Solr Service: '//input[@name="solrdisable"]'
       Create Solr DB: '//input[@name="solrinit"]'
+      Xinet Spin Icon: '//span[@id=''solrspin'']//img'
       Solr Searching (Portal Only) status: '//*[@id="wform"]/table/tbody/tr[2]/td/table/tbody/tr[1]/th'
       BUILT-IN FACETS ENABLED: '//th[.=''Built-in Facets Enabled'']'
       data location Folder: '//select[@id="subdir0"]'
