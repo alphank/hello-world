@@ -3744,3 +3744,4 @@ selectors:
         $uploadedImageName)]
       Uploaded Image TB Link: '//img[@alt=$uploadedImageName]/..'
       Uploaded Image TB lnk: '//img[@alt=$uploadedImageName]/..'
+      Uploaded Images for TB lnks: '//img[@alt=$uploadedImageName]/..'
