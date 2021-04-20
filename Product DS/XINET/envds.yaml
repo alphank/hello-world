@@ -437,7 +437,109 @@ environments:
         credentials: nativeadmin
         URL: 'http://nativeadmin:nativeadmin@10.187.233.200/webnative/listdir'
         name: SERVER
-credentials:
+  - name: bugfix/XINET-20196
+    description: 'Env for XINET-20196'
+    type: QA
+    automated: false
+    endpoints:
+      - description: Solr UI
+        type: http
+        URL: 'http://10.187.226.243:15969/solr/#/'
+        name: SOLR UI
+      - description: Xinet Portal Admin
+        type: http
+        credentials: nativeadmin
+        URL: 'http://10.187.226.243'
+        Login URL: 'http://10.187.226.243/PORTALADMIN'
+        Healthcheck URL: 'http://10.187.226.243/PORTALADMIN'
+        Host: 'http://10.187.226.243'
+        ip: 10.187.226.243
+        name: PORTALADMIN
+      - description: Xinet Portal Admin Secure
+        type: http
+        credentials: nativeadmin
+        URL: 'https://10.187.226.243'
+        Login URL: 'https://10.187.226.243/PORTALADMIN'
+        Healthcheck URL: 'https://10.187.226.243/PORTALADMIN'
+        Host: 10.187.226.243
+        ip: 10.187.226.243
+        name: PORTALADMINSECURE
+      - description: Xinet Portal Shell
+        type: ssh
+        Host: 10.187.226.243
+        credentialsId: ec2-user-key
+        Port: 22
+        name: PORTAL Shell
+      - description: Xinet Server Shell
+        type: ssh
+        Host: 10.187.226.243
+        credentialsId: ec2-user-key
+        Port: 22
+        name: SERVER Shell
+      - description: Xinet Portal user interface
+        type: http
+        credentials: qauser
+        URL: 'http://10.187.226.243/marquee/'
+        Login URL: 'http://10.187.226.243/marquee/'
+        Logout URL: 'http://10.187.226.243/PORTAL/LOGOUT/'
+        Healthcheck URL: 'http://10.187.226.243/marquee'
+        Host: 'http://10.187.226.243'
+        name: PORTAL
+      - description: Solr Admin UI
+        type: http
+        URL: 'http://10.187.226.243/marquee/'
+        name: SOLR
+      - description: Solr API
+        type: http
+        URL: 'http://10.187.226.243:15969/solr/file'
+        Healthcheck URL: 'http://10.187.226.243'
+        name: SOLR_API
+      - description: Xinet Server
+        type: http
+        credentials: nativeadmin
+        URL: 'http://nativeadmin:nativeadmin@10.187.226.243/webnative/listdir'
+        URL with credentials: 'http://nativeadmin:nativeadmin@10.187.226.243/webnative/listdir'
+        URLCred: 'http://nativeadmin:nativeadmin@10.187.226.243/webnative/listdir'
+        URLCredDev: 'http://nativeadmin:nativeadmin@10.187.226.243/webnative/listdir'
+        Login URL: 'http://nativeadmin:nativeadmin@10.187.226.243/webnative/listdir'
+        Healthcheck URL: 'http://10.187.226.243/'
+        Host: '\\http://10.187.226.243/'
+        NewUserURL: 10.187.226.243/webnative/listdir
+        name: SERVER
+      - description: Xinet Server Webnative
+        type: http
+        credentials: nativeadmin
+        URL: 'http://nativeadmin:nativeadmin@10.187.226.243/webnative'
+        URLCred: 'http://nativeadmin:nativeadmin@10.187.226.243/webnative'
+        URLCreateVolume: 'http://nativeadmin:nativeadmin@10.187.226.243/webnative/adminvol?-a'
+        URLSetBackupDir: 'http://nativeadmin:nativeadmin@10.187.226.243/webnative/userperms?-backupdir'
+        URLStartQuickBackup: 'http://nativeadmin:nativeadmin@10.187.226.243/webnative/userperms?-backup'
+        URLAdminVolumes: 'http://nativeadmin:nativeadmin@10.187.226.243/webnative/userperms?-adminvol'
+        URLXinetVols: 'http://nativeadmin:nativeadmin@10.187.226.243/webnative/listdir?-N+/xinetVols/'
+        name: SERVER_WEBNATIVE
+      - description: Xinet Pilot on Mac OS
+        type: VNC
+        host: 10.88.20.42
+        server url: 'http://10.187.192.14/PORTAL/pilot'
+        credentails: pilot-mac
+        name: Xinet Pilot Mac
+      - description: Xinet Pilot on Mac OS 1014
+        type: VNC
+        host: 10.88.20.37
+        server url: 'http://10.187.192.14/PORTAL/pilot'
+        credentails: pilot-mac
+        name: Xinet Pilot Mac 1014
+      - description: Xinet Pilot on Mac OS 1015
+        type: VNC
+        host: 10.88.20.41
+        server url: 'http://10.187.192.14/PORTAL/pilot'
+        credentails: pilot-mac-stage
+        name: Xinet Pilot Mac 1015
+      - description: Xinet Pilot on Windows OS
+        type: RDP
+        host: 10.187.192.53
+        credentails: pilot-windows
+        name: Xinet Pilot Windowscredentials:
   - type: basic
     username: qauser
     password: qauser

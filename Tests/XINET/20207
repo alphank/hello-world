@@ -12,15 +12,15 @@ Given environment "qa" from "https://github.com/alphank/hello-world/blob/master/
 # Navigate to the Xinet Server
 Given browser "Chrome"
 When I open "«environment.PORTAL.URL»"
-And I set "«credentials.qauser.username»" to "Username" value
-And I set "«credentials.qauser.password»" to "Password" value
+And I set "«credentials.qauser20196.username»" to "Username" value
+And I set "«credentials.qauser20196.password»" to "Password" value
 And I click on "Sign In Button"
 Then "Home button" should be displayed
 
 # Clear collection basket
-When I click on "//button[@onclick='clearbasketpanel();']"
+When I click on "Clear basket panel button"
 And I accept the alert box
-Then "//a[@href='#basket-content']//span[.='0']" should be displayed
+Then "Empty basket indicator" should be displayed
 
 #Generate batch report and check style
 Given "folderName" default value is "20196"
@@ -28,18 +28,22 @@ And "fileName" default value is "Input.pdf"
 When I click on "Folder item in Navigator pane"
 And I wait for "3" seconds
 And I click on "Actions Button In Menu Bar"
-And I click on "//div[@data-filename='«fileName»']//a[@data-original-title='Add to collection']"
+And I click on "Add file to collection"
 And I click on "Collection Menu in Top bar"
 And I click on "Batch Report link on the left menu"
 And I wait for "3" seconds
 And I click "Generate Batch Report button" to be opened in a new window as "batch report"
 And I switch to window "batch report"
-Then "//th[.='«folderName» WEB : «fileName»']" should be displayed
-And "//div[@class = 'annotationinfo' and contains(@style, 'width:-')]" should be displayed
+And I wait for "5" seconds
+Then "Batch report page" should be displayed
+And "Annotation info with negative width" should be displayed
 
 # Clear collection basket
 When I open "«environment.PORTAL.URL»"
 And I wait for "3" seconds
-And I click on "//button[@onclick='clearbasketpanel();']"
+And I click on "Clear basket panel button"
 And I accept the alert box
-Then "//a[@href='#basket-content']//span[.='0']" should be displayed
+Then "Empty basket indicator" should be displayed
+
+When I open "«environment.PORTAL.Logout URL»"
+Then "Sign In Button" should be displayed
