@@ -134,6 +134,7 @@ environments:
         credentials: qauser
         URL: 'http://10.187.217.170/marquee/'
         Login URL: 'http://10.187.217.170/marquee/'
+        Logout URL: 'http://10.187.217.170/PORTAL/LOGOUT/'
         Healthcheck URL: 'http://10.187.217.170/marquee'
         Host: 'http://10.187.217.170'
         name: PORTAL
