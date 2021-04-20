@@ -465,6 +465,10 @@ credentials:
     password: qauser5
     id: qauser5
   - type: basic
+    username: qauser20196
+    password: qauser
+    id: qauser20196
+  - type: basic
     username: nativeadmin
     password: nativeadmin
     role: Administrator
@@ -1455,6 +1459,7 @@ selectors:
       File names only radio button: '//input[@id=''qsearch-fno'']'
       Everything radio button: '//input[contains(@id,''qsearch-all'')]'
       First available folder item in Navigator pane: '(//span[@data-modaltitle])[1]'
+      Folder item in Navigator pane: '//span[@data-modaltitle=''$folderName WEB'']'
     name: PORTAL > Home
   - selectors:
       Search Field DropDown: '//select[@name=''SEARCHFIELD[0][FIELDNAME]'']'
