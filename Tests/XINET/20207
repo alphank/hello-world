@@ -1,0 +1,45 @@
+Feature: XINET-20207
+
+Scenario: XINET-20207 As a user I should get batch report generated successfully when I click on generate batch report
+
+As a user I should get batch report generated successfully when I click on generate batch report
+This is consistent because batch report should be created successfully
+
+# Preconditions
+Given quality bar version "20200115.1"
+Given environment "qa" from "https://github.com/alphank/hello-world/blob/master/Product%20DS/XINET/envds.yaml"
+
+# Navigate to the Xinet Server
+Given browser "Chrome"
+When I open "«environment.PORTAL.URL»"
+And I set "«credentials.qauser.username»" to "Username" value
+And I set "«credentials.qauser.password»" to "Password" value
+And I click on "Sign In Button"
+Then "Home button" should be displayed
+
+# Clear collection basket
+When I click on "//button[@onclick='clearbasketpanel();']"
+And I accept the alert box
+Then "//a[@href='#basket-content']//span[.='0']" should be displayed
+
+#Generate batch report and check style
+Given "folderName" default value is "20196"
+And "fileName" default value is "Input.pdf"
+When I click on "Folder item in Navigator pane"
+And I wait for "3" seconds
+And I click on "Actions Button In Menu Bar"
+And I click on "//div[@data-filename='«fileName»']//a[@data-original-title='Add to collection']"
+And I click on "Collection Menu in Top bar"
+And I click on "Batch Report link on the left menu"
+And I wait for "3" seconds
+And I click "Generate Batch Report button" to be opened in a new window as "batch report"
+And I switch to window "batch report"
+Then "//th[.='«folderName» WEB : «fileName»']" should be displayed
+And "//div[@class = 'annotationinfo' and contains(@style, 'width:-')]" should be displayed
+
+# Clear collection basket
+When I open "«environment.PORTAL.URL»"
+And I wait for "3" seconds
+And I click on "//button[@onclick='clearbasketpanel();']"
+And I accept the alert box
+Then "//a[@href='#basket-content']//span[.='0']" should be displayed
