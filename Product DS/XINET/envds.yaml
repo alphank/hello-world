@@ -1463,7 +1463,7 @@ selectors:
       Clear basket panel button: '//button[@onclick=''clearbasketpanel();'']'
       Empty basket indicator: '//a[@href=''#basket-content'']//span[.=''0'']'
       Add file to collection: '//div[@data-filename=$fileName]//a[@data-original-title=''Add to collection'']'
-      Batch report page filename and foldername header: '//th[contains(.,$folderName) and contains(.,$fileName)]'
+      Batch report page filename header: '//th[contains(.,$fileName)]'
       Annotation info with negative width: '//div[@class = ''annotationinfo'' and contains(@style, ''width:-'')]'
     name: PORTAL > Home
   - selectors:
