@@ -539,7 +539,8 @@ environments:
         type: RDP
         host: 10.187.192.53
         credentails: pilot-windows
-        name: Xinet Pilot Windowscredentials:
+        name: Xinet Pilot Windows
+credentials:
   - type: basic
     username: qauser
     password: qauser
