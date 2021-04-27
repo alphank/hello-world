@@ -1,0 +1,370 @@
+environments:
+  - name: dev
+    type: QA
+    description: Automated tests
+    automated: true
+    endpoints:
+      - name: scalearc-tests
+        description: ScaleArc Test Framework
+        type: http
+        URL: 'http://dev.scalearc.aureacentral.com'
+      - name: scalearc-client
+        description: Scalearc client
+        type: ssh
+        Host: dev.scalearc.aureacentral.com
+        Port: 2222
+        credentialsId: scalearc-client-user
+      - name: mysql-cluster-node1
+        description: MySQL cluster node 1
+        type: tcp
+        Host: dev.scalearc.aureacentral.com
+        Port: 3307
+      - name: pgsql-cluster-node1
+        description: PGSQL cluster node 1
+        type: tcp
+        Host: dev.scalearc.aureacentral.com
+        Port: 5433
+  - name: branch
+    type: QA
+    description:  Execute E2Es from a branch against SA from custom docker image
+    automated: true
+    endpoints:
+      - name: scalearc-tests
+        description: ScaleArc Test Framework
+        type: http
+        URL: 'http://dev.scalearc.aureacentral.com/branch'
+      - name: scalearc-client
+        description: Scalearc client
+        type: ssh
+        Host: dev.scalearc.aureacentral.com
+        Port: 2222
+        credentialsId: scalearc-client-user
+      - name: mysql-cluster-node1
+        description: MySQL cluster node 1
+        type: tcp
+        Host: dev.scalearc.aureacentral.com
+        Port: 3307
+      - name: pgsql-cluster-node1
+        description: PGSQL cluster node 1
+        type: tcp
+        Host: dev.scalearc.aureacentral.com
+        Port: 5433
+  - name: e2e
+    type: QA
+    description: E2E tests
+    automated: false
+    endpoints:
+      - name: scalearc-tests
+        description: ScaleArc Test Framework
+        type: http
+        URL: 'http://e2e.scalearc.aureacentral.com'
+      - name: scalearc-client
+        description: Scalearc client
+        type: ssh
+        Host: e2e.scalearc.aureacentral.com
+        Port: 2222
+        credentialsId: scalearc-client-user
+      - name: mysql-cluster-node1
+        description: MySQL cluster node 1
+        type: tcp
+        Host: e2e.scalearc.aureacentral.com
+        Port: 3307
+      - name: pgsql-cluster-node1
+        description: PGSQL cluster node 1
+        type: tcp
+        Host: e2e.scalearc.aureacentral.com
+        Port: 5433
+  - name: se7
+    type: QA
+    description: SE7 tests
+    automated: false
+    endpoints:
+      - name: scalearc-tests
+        description: ScaleArc Test Framework
+        type: http
+        URL: 'http://se7.scalearc.aureacentral.com'
+      - name: scalearc-client
+        description: Scalearc client
+        type: ssh
+        Host: se7.scalearc.aureacentral.com
+        Port: 2222
+        credentialsId: scalearc-client-user
+      - name: mysql-cluster-node1
+        description: MySQL cluster node 1
+        type: tcp
+        Host: se7.scalearc.aureacentral.com
+        Port: 3307
+      - name: pgsql-cluster-node1
+        description: PGSQL cluster node 1
+        type: tcp
+        Host: se7.scalearc.aureacentral.com
+        Port: 5433
+  - name: bugfix/SCALEARC-20957
+    type: QA
+    description:  Execute E2Es from a branch against SA from custom docker image
+    automated: true
+    endpoints:
+      - name: scalearc-tests
+        description: ScaleArc Test Framework
+        type: http
+        URL: 'http://dev.scalearc.aureacentral.com/branch'
+      - name: scalearc-client
+        description: Scalearc client
+        type: ssh
+        Host: dev.scalearc.aureacentral.com
+        Port: 2222
+        credentialsId: scalearc-client-user
+      - name: mysql-cluster-node1
+        description: MySQL cluster node 1
+        type: tcp
+        Host: dev.scalearc.aureacentral.com
+        Port: 3307
+      - name: pgsql-cluster-node1
+        description: PGSQL cluster node 1
+        type: tcp
+        Host: dev.scalearc.aureacentral.com
+        Port: 5433
+credentials:
+  - name: scalearc-web-user
+    type: basic
+    username: admin
+    password: admin
+    id: scalearc-web-user
+  - name: scalearc-client-user
+    type: basic
+    username: client
+    password: changeme
+    id: scalearc-client-user
+  - name: scalearc-root
+    type: basic
+    username: root
+    password: changeme
+    id: scalearc-root
+  - name: mssql-user
+    type: basic
+    username: sa
+    password: Changeme123
+    id: mssql-user
+  - name: mysql-user
+    type: basic
+    username: client
+    password: changeme
+    id: mysql-user
+  - name: pgsql-user
+    type: basic
+    username: client
+    password: changeme
+    id: pgsql-user
+selectors:
+  - group: Login Page
+    selectors:
+      Login Panel: '//div[@id=''ext-comp-1028'']'
+      Login Username: '//input[@name=''username'']'
+      Login Password: '//input[@name=''password'']'
+      Login Button enabled: '//button[span[contains(text(), ''Login'')]][not(@disabled)]'
+    name: '0'
+  - group: Top Menu
+    selectors:
+      LIVE MONITOR: '//*[@href=''#monitor'']'
+      Historical Stats: '//*[@href=''#historical_stats'']'
+      Value Meters: '//*[@id="menuitem-1021-itemEl"]'
+      Performance: '//*[@href=''ng/#/performance'']'
+      CLUSTERS: '//*[@href=''#clusters'']'
+      ANALYTICS: '//*[@href=''/ng/#/analytics'']'
+      SETTINGS: '//*[@href=''#settings/network'']'
+      System Settings: '//*[@href=''#settings/system'']'
+      License Settings: '//*[@href=''#settings/license'']'
+    name: '1'
+  - group: Performance
+    selectors:
+      Performance Panel: '//div[contains(@class,''performance-content'')]'
+      Start Value Meter button: '//button[@aria-label=''Start Value Meter'']'
+      Value Meter confirm dialog: '//md-dialog[@aria-label=''ConfirmWhen you run ...'']'
+      Value Meter continue button: '//md-dialog/md-dialog-actions/button//span[text()=''CONTINUE'']'
+      QPS without Scalearc: '//section[contains(@class,''value-meter-test-results'')]/div[1]/span'
+      QPS with Scalearc: '//section[contains(@class,''value-meter-test-results'')]/div[2]/span'
+    name: '2'
+  - group: Historical stats
+    selectors:
+      Historical Stats panel: '//*[@id=''sa-historical-stats-1273'']'
+      Cluster type selector: '//*[@id="ext-gen1646"]'
+      CLUSTER - mysqlcluster in Cluster type selector: '//*[@id="boundlist-1288-listEl"]/div[2]'
+      Category selector: '//*[@id="ext-gen1649"]'
+      Queries Count per Server in Category selector: '//*[@id="boundlist-1290-listEl"]/ul/li[4]'
+      Resolution selector: '//*[@id="ext-gen1659"]'
+      30 sec in Resolution selector: '//*[@id="boundlist-1292-listEl"]/ul/li[5]'
+      LOAD DATA button: '//*[@id="button-1279-btnEl"]'
+    name: '3'
+  - group: Live Monitor Menu
+    selectors:
+      DIAGNOSTICS > File Browser: '//*[@id=''menuitem-1019-itemEl'']'
+      DIAGNOSTICS > Traffic Analyzer: '//*[@id=''menuitem-1020-textEl'']'
+    name: '4'
+  - group: Initial setup
+    selectors:
+      Setup ScaleArc Cluster button: '//*[@id=''btn-setup-idb'']'
+    name: '5'
+  - group: Cluster Panel
+    selectors:
+      Cluster panel: '//*[@id=''sa-clusterspanel'']'
+      Cluster ID-1 name: '//*[@id=''sa-cluster-1'']//span[@class=''truncatedHost'']'
+      Cluster ID-2 name: '//*[@id=''sa-cluster-2'']//span[@class=''truncatedHost'']'
+      Cluster Read + Write server: '//*[@id=''sa-cluster-1'']//div[@class=''role''][text()=''Read + Write'']'
+      Cluster Read server: '//*[@id=''sa-cluster-1'']//div[@class=''role''][text()=''Read'']'
+      Cluster Standby + Read server: '//*[@id=''sa-cluster-1'']//div[@class=''role''][text()=''Standby + Read'']'
+      Delete button of Read + Write server: >-
+        //*[@id='sa-cluster-1']//div[@class='role'][text()='Read +
+        Write']/..//div[contains(@class,'deleteserver')]
+      Delete button of Read server: >-
+        //*[@id='sa-cluster-1']//div[@class='role'][text()='Read']/..//div[contains(@class,'deleteserver')]
+      Delete button of Standby + Read server: >-
+        //*[@id='sa-cluster-1']//div[@class='role'][text()='Standby +
+        Read']/..//div[contains(@class,'deleteserver')]
+      Confirm button on delete server dialog: '//*[@id="button-1006-btnInnerEl"]'
+    name: '6'
+  - group: Create cluster wizard
+    selectors:
+      Create cluster type selector: '//*[@id=''sa-new-cl-type'']'
+      Create cluster network panel: '//*[@id=''sa-new-cl-network'']'
+      Create cluster database panel: '//*[@id=''sa-new-cl-database'']'
+      Create cluster servers panel: '//*[@id=''sa-new-cl-servers'']'
+      Create cluster SSL settings panel: '//*[@id=''sa-new-ssl-settings'']'
+      Create cluster cluster settings panel: '//*[@id=''sa-new-cl-settings'']'
+      MSSQL cluster type radio button: '//*[@id=''sa-new-cl-type'']//label[text()=''MSSQL'']/../input'
+      MYSQL cluster type radio button: '//*[@id=''sa-new-cl-type'']//label[text()=''MYSQL'']/../input'
+      PGSQL cluster type radio button: '//*[@id=''sa-new-cl-type'']//label[text()=''PGSQL'']/../input'
+      Cluster name input field: '//*[@id=''sa-new-cl-network'']//*[@name=''cluster_name'']'
+      Instance name input field: '//*[@id=''sa-new-cl-network'']//*[@name=''instance_name'']'
+      Cluster Virtual IP address selector: '//*[@id=''sa-cluster_inbound_ip-bodyEl'']'
+      All IPs in Cluster Virtual IP address selector: '//*[@class=''x-css-shadow'']/following::*[1]//li[text()=''All IPs [Any]'']'
+      Outbound Virtual IP address selector: '//*[@id=''sa-cluster_outbound_ip-inputEl'']'
+      All IPs in Outbound Virtual IP address selector: '//*[@class=''x-css-shadow'']/following::*[1]//li[text()=''All IPs [Any]'']'
+      Database Username field: '//*[@name=''cluster_server_username'']'
+      Database Password field: '//*[@name=''cluster_server_password'']'
+      Server type selector: '//*[@id=''sa-new-server-type-bodyEl'']'
+      Server option in Server type selector: '//*[@class=''x-css-shadow'']/following::*[1]//li[text()=''Server'']'
+      Server IP Address/FQDN field: '//*[@id=''sa-new-server-ip-inputEl'']'
+      Server Port field: '//*[@id=''sa-new-server-port-inputEl'']'
+      Server role selector: '//*[@id=''sa-new-server-role-triggerWrap'']'
+      Read + Write in Server role selector: '//*[@class=''x-css-shadow'']/following::*[1]//li[text()=''Read + Write'']'
+      Add Server button: '//*[@id=''sa-new-cl-add-server-btnEl'']'
+      Server data item: '//*[@id=''sa-addserverdataview'']'
+      Setup Cluster button: '//*[@id=''sa-new-btn-add-cl-btnEl'']'
+      Info message dialog: '//*[@id=''messagebox-1001_header_hd-textEl'']'
+      Info message dialog OK button: '//*[@id=''button-1005-btnEl'']'
+      Tooltip: '//*[@id=''quicktip-1031-body'']//ul/li'
+      Dialog box: '//*[@id=''messagebox-1001'']'
+      Dialog box message: >-
+        //*[@id='messagebox-1001']//div[@id='messagebox-1001-displayfield-inputEl']
+      Dialog box error message: >-
+        //*[@id='messagebox-1001']//div[@id='messagebox-1001-displayfield-inputEl']/div[1]
+      Dialog box error link: '//*[@id=''messagebox-1001'']//a'
+      Dialog box second error link: '(//*[@id=''messagebox-1001'']//a)[2]'
+      Dialog box OK button: '//*[@id=''button-1005-btnEl'']'
+    name: '7'
+  - group: Analytics Panel
+    selectors:
+      Analytics of pgcluster: >-
+        //div[contains(@class,'cluster-wrapper')]//span[contains(text(),
+        'pgcluster')]
+      Analytics of pgcluster first hour row: >-
+        (//div[contains(@class,'cluster-wrapper')]//div[contains(@class,'cluster-row')])[1]
+      Analytics of pgcluster test_13451_db row: >-
+        //div[contains(@class,'db-wrapper')]//div[contains(text(),'test_13451_db')]
+      Analytics prepare statements: '//input[@value=''pstatements'']'
+      Analytics first pattern row: >-
+        (//div[contains(@class,'row-wrapper')]//div[contains(@class,'pattern')])[1]
+      Analytics second pattern row: >-
+        (//div[contains(@class,'row-wrapper')]//div[contains(@class,'pattern')])[2]
+    name: '8'
+  - group: System Settings Panel
+    selectors:
+      System Settings Panel: '//*[@id=''sa-systemsettings'']'
+      System Config tab: '//*[@id=''sa-systemsettings'']//span[contains(text(), ''System Config'')]'
+      System Config label: '//*[@id=''settings'']//label[contains(text(), ''System Config'')]'
+      System Config Enable button: '//*[@id=''sa-btn-ssh-manager-btnInnerEl'']'
+      System Config Enable SSH button: '//*[@id=''sa-btn-enable-ssh-btnInnerEl'']'
+      System Config Enable SSH modal: '//*[@id=''enableSSHWin'']'
+      User defined option in Enable SSH modal: '//*[@id=''enableSSHWin'']//label[contains(text(), ''User Defined'')]'
+      Password in SSH modal: '//*[@id=''enableSSHWin'']//*[@id=''user-defined-password-inputEl'']'
+      Verify Password in SSH modal: '//*[@id=''enableSSHWin'']//*[@id=''user-defined-password-verify-inputEl'']'
+      Save button in SSH modal: '//*[@id=''enableSSHWin'']//*[@id=''enableSSHBtnSave-btnInnerEl'']'
+      Enter Admin Credentials in SSH modal: '//*[@id=''enableSSHWin'']//*[contains(text(), ''Enter Admin Credentials'')]'
+      Username admin credentials in SSH modal: '//*[@id=''enableSSHWin'']//*[@name=''admin-username'']'
+      Password admin credentials in SSH modal: '//*[@id=''enableSSHWin'']//*[@name=''admin-password'']'
+      Submit button in SSH modal: '//*[@id=''enableSSHWin'']//*[@id=''enableSSHBtnSubmit-btnInnerEl'']'
+    name: '9'
+  - group: License panel
+    selectors:
+      License panel: '//*[@id=''sa-licensesettings-container'']'
+      License username: '//*[@id=''sa-license-settings'']/div/div[2]/div[2]'
+      License email: '//*[@id=''sa-license-settings'']/div/div[3]/div[2]'
+      License edition: '//*[@id=''sa-license-settings'']/div/div[4]/div[2]'
+      License platform: '//*[@id=''sa-license-settings'']/div/div[5]/div[2]'
+      License database type: '//*[@id=''sa-license-settings'']/div/div[6]/div[2]'
+      License maximum cores: '//*[@id=''sa-license-settings'']/div/div[7]/div[2]'
+      License maximum vCPUS: '//*[@id=''sa-license-settings'']/div/div[8]/div[2]'
+      License maximum clusters: '//*[@id=''sa-license-settings'']/div/div[9]/div[2]'
+      License maximum cache: '//*[@id=''sa-license-settings'']/div/div[10]/div[2]'
+      License last updated: '//*[@id=''sa-license-settings'']/div/div[11]/div[2]'
+      License expiry: '//*[@id=''sa-license-settings'']/div/div[12]/div[2]'
+      License key: '//*[@id=''sa-license-settings'']/div/div[13]/div[2]'
+    name: '10'
+  - group: Traffic Analyzer
+    selectors:
+      Traffic Capture button: '/html/body/div[2]/div/div/div[2]/md-content/nav/div/div/button[1]'
+      Traffic Capture panel: '//form[@name=''captureForm'']'
+      Capture Mode selector: '//*[@id=''select_value_label_0'']'
+      Capture Cluster selector: '//*[@id=''select_value_label_1'']'
+      Start Capture button: '//form[@name=''captureForm'']/div[2]/button'
+      Stop Capture button: '//*[@id="1"]'
+      Analyze Traffic button: //unknown
+      Download Analysis button: //unknown
+      Delete Analysis button: //unknown
+      View The Report button: //unknown
+      Choose File: //unknown
+    name: '11'
+  - group: Modal Dialog
+    selectors:
+      Info Window: '//*[@class=''modal-content'']/div/div'
+      OK Button: '//*[@class=''modal-content'']/div/div/button'
+    name: '12'
+  - group: License Generating
+    name: License Generating
+    selectors:
+      UserName: '//*[@id=''username'']'
+      Password: '//*[@id=''pass'']'
+      Login button: '//*[@href=''#'']'
+      Licgen UserName: '//*[@id=''username'']'
+      Licgen Password: '//*[@id=''pass'']'
+      Licgen Login button: '//*[@href=''#'']'
+      Generate License button: '//*[@name=''Generate License'']'
+      Advanced button: '//*[@id=''details-button'']'
+      Proceed hyper link: '//*[@id=''proceed-link'']'
+      Licgen Version: '//*[@id=''versionno'']'
+      Licgen Platform Type: '//*[@id=''prodType'']'
+      Licgen Type: '//*[@id=''lictype'']'
+      Licgen Edition: '//*[@id=''etype'']'
+      Licgen Max Cores: '//*[@id=''max_core'']'
+      Licgen Max Clusters: '//*[@id=''max_cluster'']'
+      Licgen Max Cache Mem: '//*[@id=''max_memory'']'
+      Licgen Customer Name: '//*[@id=''user_name'']'
+      Licgen Order Number: '//*[@id=''sales_number'']'
+      Licgen Time Period: '//*[@id=''no_days'']'
+      Licgen Customer Email: '//*[@id=''cust_email'']'
+      Licgen Number of Licenses: '//*[@id=''totalLicenses'']'
+      Licgen Download License: '//*[@id=''download'']'
+      Upload License button: '//*[@id="uploadfile"]'
+      License details filename: '//*[@id="versionmsg"]'
+      Uploaded license edition: >-
+        //*[@id="fileuploadmsg"]//table//tr[td[contains(.,
+        "Edition")]]/td[last()]
+      Uploaded license Maximum iDB Cores: >-
+        //*[@id="fileuploadmsg"]//table//tr[td[contains(., "Maximum iDB
+        Cores")]]/td[last()]
+      Uploaded license Maximum Clusters: >-
+        //*[@id="fileuploadmsg"]//table//tr[td[contains(., "Maximum
+        Clusters")]]/td[last()]
+      Uploaded license Maximum Cache: >-
+        //*[@id="fileuploadmsg"]//table//tr[td[contains(., "Maximum
+        Cache")]]/td[last()]

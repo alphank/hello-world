@@ -1,0 +1,2265 @@
+id: 51992
+name: ScaleArc
+description: ScaleArc
+revision: 124
+lastModifiedDate: "2021-01-22T11:24:01Z"
+lastModifiedUser: dmitry.chubarin@trilogy.com
+lastModifiedAgent: structurizr-web/1905
+model:
+  people:
+    - id: "3"
+      tags: Element,Person
+      name: Admin
+      description: Person with administration privileges to configure Scalearc load-balancing
+      relationships:
+        - id: "278"
+          tags: Relationship
+          sourceId: "3"
+          destinationId: "25"
+          description: Administers Scalearc
+          technology: HTTPS
+        - id: "361"
+          tags: Relationship
+          sourceId: "3"
+          destinationId: "318"
+          description: Operates scalearc
+          technology: Browser
+        - id: "277"
+          tags: Relationship
+          sourceId: "3"
+          destinationId: "24"
+          description: Administers Scalearc
+          technology: Browser
+        - id: "279"
+          tags: Relationship
+          sourceId: "3"
+          destinationId: "1"
+          description: Administers Scalearc
+          technology: Browser / HTTPS
+      location: External
+    - id: "4"
+      tags: Element,Person
+      name: Users
+      description: Role base access users which can access Scalearc to administer or visualize data
+      relationships:
+        - id: "362"
+          tags: Relationship
+          sourceId: "4"
+          destinationId: "318"
+          description: Operates scalearc
+          technology: Browser
+        - id: "10"
+          tags: Relationship,Synchronous
+          sourceId: "4"
+          destinationId: "1"
+          description: Operates Scalearc
+          technology: Browser / HTTPS
+          interactionStyle: Synchronous
+        - id: "31"
+          tags: Relationship,Synchronous
+          sourceId: "4"
+          destinationId: "24"
+          description: Operates Scalearc
+          technology: Browser
+          interactionStyle: Synchronous
+      location: External
+  softwareSystems:
+    - id: "33"
+      tags: Element,Software System,External system
+      name: API clients
+      description: Clients which can access Scalearc management via API
+      relationships:
+        - id: "280"
+          tags: Relationship
+          sourceId: "33"
+          destinationId: "1"
+          description: Operates Scalearc load balancer
+          technology: HTTPS
+        - id: "339"
+          tags: Relationship
+          sourceId: "33"
+          destinationId: "314"
+          description: Operates Scalearc load balancer
+          technology: HTTPS
+        - id: "35"
+          tags: Relationship,Synchronous
+          sourceId: "33"
+          destinationId: "25"
+          description: Operates Scalearc load balancer
+          technology: HTTPS
+          interactionStyle: Synchronous
+        - id: "338"
+          tags: Relationship
+          sourceId: "33"
+          destinationId: "315"
+          description: Operates Scalearc load balancer
+          technology: HTTPS
+      location: External
+    - id: "34"
+      tags: Element,Software System,External system
+      name: Database Clients
+      description: DB clients using JDBC / ODBC / OLE / .NET / SqlClient, etc.
+      relationships:
+        - id: "360"
+          tags: Relationship
+          sourceId: "34"
+          destinationId: "334"
+          description: Uses
+          technology: DB Wire Protocol
+        - id: "36"
+          tags: Relationship,Synchronous
+          sourceId: "34"
+          destinationId: "22"
+          description: Database connections
+          technology: DB Wire Protocol
+          interactionStyle: Synchronous
+        - id: "359"
+          tags: Relationship
+          sourceId: "34"
+          destinationId: "337"
+          description: Uses
+          technology: DB Wire Protocol
+        - id: "357"
+          tags: Relationship
+          sourceId: "34"
+          destinationId: "326"
+          description: Uses
+          technology: DB Wire Protocol
+        - id: "356"
+          tags: Relationship
+          sourceId: "34"
+          destinationId: "331"
+          description: Uses
+          technology: DB Wire Protocol
+        - id: "281"
+          tags: Relationship
+          sourceId: "34"
+          destinationId: "1"
+          description: Database connections
+          technology: DB Wire Protocol
+      location: External
+    - id: "13"
+      tags: Element,Software System,External system
+      name: Database Clusters
+      description: Set of database clusters of different types like MSSQL, MySQL, Oracle or PgSQL
+      location: External
+    - id: "16"
+      tags: Element,Software System,External system
+      name: E-mail System
+      description: E-mail platform to which Scalearc sends notifications
+      relationships:
+        - id: "345"
+          tags: Relationship
+          sourceId: "16"
+          destinationId: "314"
+          description: Sends email
+          technology: SMTP
+      location: External
+    - id: "1"
+      tags: Element,Software System,Software System Main
+      name: ScaleArc
+      description: ScaleArc load balancer
+      relationships:
+        - id: "20"
+          tags: Relationship,Synchronous
+          sourceId: "1"
+          destinationId: "15"
+          description: Synchronizes users
+          technology: LDAP
+          interactionStyle: Synchronous
+        - id: "21"
+          tags: Relationship,Synchronous
+          sourceId: "1"
+          destinationId: "16"
+          description: Sends e-mail notifications
+          technology: SMTP
+          interactionStyle: Synchronous
+        - id: "18"
+          tags: Relationship,Synchronous
+          sourceId: "1"
+          destinationId: "13"
+          description: Does load-balancing and monitoring
+          technology: DB Wire Protocol / TCP Socket
+          interactionStyle: Synchronous
+      location: Internal
+      containers:
+        - id: "25"
+          tags: Element,Container,SE7:SCALEARC,FA:SCALEARC-13094,FA:SCALEARC-6189,FA:SCALEARC-6163,FA:SCALEARC-15310,FA:SCALEARC-6169,FA:SCALEARC-6172
+          name: API services
+          description: Provides ScaleArc API, Traffic Analyzer API, User Offbox Auth API
+          relationships:
+            - id: "282"
+              tags: Relationship
+              sourceId: "25"
+              destinationId: "16"
+              description: Sends email notifications
+              technology: SMTP
+            - id: "27"
+              tags: Relationship,Synchronous
+              sourceId: "25"
+              destinationId: "22"
+              description: Sends config changes notifications
+              technology: Unix/TCP socket
+              interactionStyle: Synchronous
+            - id: "41"
+              tags: Relationship,Synchronous
+              sourceId: "25"
+              destinationId: "37"
+              description: Read / write configurations, get traffic analysis results
+              technology: sqlite
+              interactionStyle: Synchronous
+            - id: "284"
+              tags: Relationship
+              sourceId: "25"
+              destinationId: "23"
+              description: Manages Traffic Analytics processes
+              technology: Python
+            - id: "283"
+              tags: Relationship
+              sourceId: "25"
+              destinationId: "275"
+              description: Generates logs
+              technology: Filesystem
+          technology: PHP/Python
+          components:
+            - id: "315"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/ui/django_api
+              name: Django REST framework
+              description: Apache with custom Python server to parse and handle REST queries
+              relationships:
+                - id: "341"
+                  tags: Relationship
+                  sourceId: "315"
+                  destinationId: "22"
+                  description: Notifies changes
+                  technology: Unix/TCP socket
+                - id: "350"
+                  tags: Relationship
+                  sourceId: "315"
+                  destinationId: "13"
+                  description: Discover DB configs
+                  technology: DB Wire Protocol
+                - id: "346"
+                  tags: Relationship
+                  sourceId: "315"
+                  destinationId: "16"
+                  description: Sends email
+                  technology: SMTP
+              technology: mod_wsgi (python)
+              size: 0
+            - id: "314"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/ui/api
+              name: PHP server
+              description: Apache with Custom PHP framework to parse and handle REST queries
+              relationships:
+                - id: "351"
+                  tags: Relationship
+                  sourceId: "314"
+                  destinationId: "13"
+                  description: Discover DB configs
+                  technology: DB Wire Protocol
+              technology: mod_php (php)
+              size: 0
+        - id: "275"
+          tags: Element,Container,Database,SE7:SCALEARC,FA:SCALEARC-11571
+          name: Logs repository
+          description: Log storage space where Scalearc activity is stored
+          technology: Filesystem
+          components:
+            - id: "316"
+              tags: Element,Component,Database
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/core/common/misc/source/log.c
+              name: Logs repository
+              description: Directories where daily and historical logs are stored
+              relationships:
+                - id: "366"
+                  tags: Relationship
+                  sourceId: "316"
+                  destinationId: "329"
+                  description: Logs
+                  technology: Filesystem
+              technology: Filesystem
+              size: 0
+        - id: "26"
+          tags: Element,Container,SE7:SCALEARC,FA:SCALEARC-6189,FA:SCALEARC-6163,FA:SCALEARC-6173,FA:SCALEARC-15896,FA:SCALEARC-6184
+          name: ScaleArc Services
+          description: Set of standalone scripts to perform monitoring, alerting and housekeeping activities
+          relationships:
+            - id: "30"
+              tags: Relationship,Synchronous
+              sourceId: "26"
+              destinationId: "22"
+              description: Sends cluster changes notifications
+              technology: Unix/TCP socket
+              interactionStyle: Synchronous
+            - id: "287"
+              tags: Relationship
+              sourceId: "26"
+              destinationId: "275"
+              description: Operates logs
+              technology: Filesystem
+            - id: "288"
+              tags: Relationship
+              sourceId: "26"
+              destinationId: "13"
+              description: Monitors and operates database cluster and nodes
+              technology: TCP socket / DB Wire Protocol
+            - id: "91"
+              tags: Relationship,Synchronous
+              sourceId: "26"
+              destinationId: "37"
+              description: Read / write configurations
+              technology: sqlite
+              interactionStyle: Synchronous
+            - id: "46"
+              tags: Relationship,Synchronous
+              sourceId: "26"
+              destinationId: "16"
+              description: Sends email notifications
+              technology: SMTP
+              interactionStyle: Synchronous
+            - id: "48"
+              tags: Relationship,Synchronous
+              sourceId: "26"
+              destinationId: "15"
+              description: Synchronizes AD groups
+              technology: LDAP
+              interactionStyle: Synchronous
+          technology: Python
+          components:
+            - id: "76"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/alert_engine
+              name: alert_engine
+              description: Pub/sub element to interact with Redis channels
+              relationships:
+                - id: "289"
+                  tags: Relationship
+                  sourceId: "76"
+                  destinationId: "274"
+                  description: Publishes and subscribes events
+                  technology: Redis
+                - id: "87"
+                  tags: Relationship,Synchronous
+                  sourceId: "76"
+                  destinationId: "16"
+                  description: Sends emails
+                  technology: SMTP
+                  interactionStyle: Synchronous
+              technology: Python
+              size: 0
+            - id: "75"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/always_on_monitor
+              name: always_on_monitor
+              description: Monitor of server role changes in SQLServer AON nodes
+              relationships:
+                - id: "311"
+                  tags: Relationship
+                  sourceId: "75"
+                  destinationId: "22"
+                  description: Notify changes
+                  technology: Unix/TCP Socket
+                - id: "294"
+                  tags: Relationship
+                  sourceId: "75"
+                  destinationId: "13"
+                  description: Monitor server role changes for SQLServer AON
+                  technology: DB Wire Protocol
+              technology: Python
+              size: 0
+            - id: "79"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/cluster_monitor
+              name: cluster_monitor
+              description: Monitors cluster nodes information of every cluster in Scalearc
+              relationships:
+                - id: "295"
+                  tags: Relationship
+                  sourceId: "79"
+                  destinationId: "22"
+                  description: Monitor cluster
+                  technology: Unix/TCP socket
+              technology: Python
+              size: 0
+            - id: "84"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/connection_monitor
+              name: connection_monitor
+              description: Monitors queries connections
+              relationships:
+                - id: "296"
+                  tags: Relationship
+                  sourceId: "84"
+                  destinationId: "22"
+                  description: Monitor connections
+                  technology: TCP socket
+              technology: Python
+              size: 0
+            - id: "68"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/crondelete
+              name: crondelete
+              description: Moves stats to historical
+              relationships:
+                - id: "293"
+                  tags: Relationship
+                  sourceId: "68"
+                  destinationId: "37"
+                  description: Move stats
+                  technology: sqlite
+              technology: Python
+              size: 0
+            - id: "72"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/db_monitor
+              name: db_monitor
+              description: Monitors load balancer endpoint of every cluster
+              relationships:
+                - id: "90"
+                  tags: Relationship,Synchronous
+                  sourceId: "72"
+                  destinationId: "22"
+                  description: Monitors status
+                  technology: Unix/TCP socket
+                  interactionStyle: Synchronous
+              technology: Python
+              size: 0
+            - id: "80"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/db_role_monitor
+              name: db_role_monitor
+              description: Synchronizes servers and their role between local cluster and RDS/Azure information
+              relationships:
+                - id: "308"
+                  tags: Relationship
+                  sourceId: "80"
+                  destinationId: "22"
+                  description: Notify changes
+                  technology: Unix/TCP Socket
+                - id: "297"
+                  tags: Relationship
+                  sourceId: "80"
+                  destinationId: "13"
+                  description: Monitors servers and roles
+                  technology: DB Wire Protocol
+              technology: Python
+              size: 0
+            - id: "81"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/domain_replicator
+              name: domain_replicator
+              description: Synchronizes groups between AD and local cluster if system is configured in RODC
+              relationships:
+                - id: "313"
+                  tags: Relationship
+                  sourceId: "81"
+                  destinationId: "22"
+                  description: Notify changes
+                  technology: Unix/TCP socket
+                - id: "88"
+                  tags: Relationship,Synchronous
+                  sourceId: "81"
+                  destinationId: "15"
+                  description: Synchronizes groups
+                  technology: LDAP
+                  interactionStyle: Synchronous
+              technology: Python
+              size: 0
+            - id: "67"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/failover
+              name: failover
+              description: Monitors for server health to change server roles and listens to manual failover switches
+              relationships:
+                - id: "292"
+                  tags: Relationship
+                  sourceId: "67"
+                  destinationId: "13"
+                  description: Modifies node roles to address a failover
+                  technology: DB Wire Protocol / Scripting
+                - id: "309"
+                  tags: Relationship
+                  sourceId: "67"
+                  destinationId: "22"
+                  description: Notify changes
+                  technology: Unix/TCP Socket
+              technology: Python
+              size: 0
+            - id: "86"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/fence_watchdog
+              name: fence_watchdog
+              description: Monitors Scalearc HA roles
+              relationships:
+                - id: "298"
+                  tags: Relationship
+                  sourceId: "86"
+                  destinationId: "22"
+                  description: Monitors Scalearc
+                  technology: TCP socket
+              technology: Python
+              size: 0
+            - id: "78"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/health_monitor
+              name: health_monitor
+              description: Monitors cluster servers health
+              relationships:
+                - id: "299"
+                  tags: Relationship
+                  sourceId: "78"
+                  destinationId: "22"
+                  description: Monitors cluster
+                  technology: Unix/TCP socket
+              technology: Python
+              size: 0
+            - id: "71"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/idb_snmp
+              name: idb_snmp
+              description: Registers and updates SNMP variables
+              relationships:
+                - id: "300"
+                  tags: Relationship
+                  sourceId: "71"
+                  destinationId: "22"
+                  description: SNMP information
+                  technology: SNMP
+              technology: Python
+              size: 0
+            - id: "73"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/license_monitor
+              name: license_monitor
+              description: Monitors and checks current license violations
+              relationships:
+                - id: "301"
+                  tags: Relationship
+                  sourceId: "73"
+                  destinationId: "22"
+                  description: Monitor license
+                  technology: Unix/TCP socket
+              technology: Python
+              size: 0
+            - id: "69"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/logs_backup
+              name: logs_backup
+              description: Archive logs
+              relationships:
+                - id: "290"
+                  tags: Relationship
+                  sourceId: "69"
+                  destinationId: "275"
+                  description: Archive logs
+                  technology: Filesystem
+              technology: Python
+              size: 0
+            - id: "70"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/move_currentlogs
+              name: move_currentlogs
+              description: Move and clean today and yesterday logs
+              relationships:
+                - id: "291"
+                  tags: Relationship
+                  sourceId: "70"
+                  destinationId: "275"
+                  description: Move and clean logs
+                  technology: Filesystem
+              technology: Python
+              size: 0
+            - id: "274"
+              tags: Element,Component,Database
+              url: https://redis.io/
+              name: Redis channels
+              description: Stores and send events throughout all Scalearc Services
+              technology: Redis
+              size: 0
+            - id: "83"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/replication_monitor
+              name: replication_monitor
+              description: Monitors cluster node replication lags
+              relationships:
+                - id: "312"
+                  tags: Relationship
+                  sourceId: "83"
+                  destinationId: "22"
+                  description: Notify changes
+                  technology: Unix/TCP Socket
+                - id: "302"
+                  tags: Relationship
+                  sourceId: "83"
+                  destinationId: "13"
+                  description: Get replication info
+                  technology: DB Wire Protocol
+              technology: Python
+              size: 0
+            - id: "82"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/socket_client
+              name: socket_client
+              description: Monitors system and Scalearc performance metrics
+              relationships:
+                - id: "303"
+                  tags: Relationship
+                  sourceId: "82"
+                  destinationId: "22"
+                  description: Get stats
+                  technology: Unix/TCP socket
+              technology: Python
+              size: 0
+            - id: "74"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/system_monitor
+              name: system_monitor
+              description: Sends notifications when system resources are above thresholds
+              relationships:
+                - id: "305"
+                  tags: Relationship
+                  sourceId: "74"
+                  destinationId: "22"
+                  description: Get resources stats
+                  technology: Unix/TCP socket
+                - id: "304"
+                  tags: Relationship
+                  sourceId: "74"
+                  destinationId: "16"
+                  description: Sends alert
+                  technology: SMTP
+              technology: Python
+              size: 0
+            - id: "77"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/traffic_analyzer
+              name: traffic_analyzer
+              description: Monitors traffic analyzer stages (capture, analyzer, cleanup)
+              relationships:
+                - id: "306"
+                  tags: Relationship
+                  sourceId: "77"
+                  destinationId: "22"
+                  description: Get traffic information
+                  technology: Unix/TCP socket
+                - id: "92"
+                  tags: Relationship,Synchronous
+                  sourceId: "77"
+                  destinationId: "37"
+                  description: Read / write configurations
+                  technology: sqlite
+                  interactionStyle: Synchronous
+              technology: Python
+              size: 0
+            - id: "85"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/cmd/users_creds_monitor
+              name: user_creds_monitor
+              description: Fetches, updates and removes users from database clusters
+              relationships:
+                - id: "307"
+                  tags: Relationship
+                  sourceId: "85"
+                  destinationId: "13"
+                  description: Get credentials
+                  technology: DB Wire Protocol
+                - id: "310"
+                  tags: Relationship
+                  sourceId: "85"
+                  destinationId: "22"
+                  description: Notify changes
+                  technology: Unix/TCP Socket
+              technology: Python
+              size: 0
+        - id: "37"
+          tags: Element,Container,Database,SE7:SCALEARC,FA:SCALEARC-15310,FA:SCALEARC-6163,FA:SCALEARC-6169,FA:SCALEARC-6172
+          name: System Data Store
+          description: Configurations, cluster status, traffic analytics
+          relationships:
+            - id: "349"
+              tags: Relationship
+              sourceId: "37"
+              destinationId: "315"
+              description: Read / write configurations
+              technology: sqlite
+            - id: "348"
+              tags: Relationship
+              sourceId: "37"
+              destinationId: "314"
+              description: Read / write configurations
+              technology: sqlite
+          technology: SQLite
+          components:
+            - id: "330"
+              tags: Element,Component,Database
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/conf
+              name: Cluster configurations
+              description: Cluster configurations
+              technology: sqlite
+              size: 0
+            - id: "317"
+              tags: Element,Component,Database
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/services/src/conf/lb.sqlite
+              name: System configurations
+              description: System configurations
+              technology: sqlite
+              size: 0
+        - id: "23"
+          tags: Element,Container,SE7:SCALEARC,FA:SCALEARC-6163,FA:SCALEARC-15310,FA:SCALEARC-13091
+          name: Traffic Analyzer
+          description: Analyzes logs created by the traffic manager and TCP dumps
+          relationships:
+            - id: "40"
+              tags: Relationship,Synchronous
+              sourceId: "23"
+              destinationId: "37"
+              description: Store traffic analytics
+              technology: sqlite
+              interactionStyle: Synchronous
+          technology: C++, Python
+          components:
+            - id: "329"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-tools-cpe-2016/tree/develop/TrafficAnalyzer
+              name: Report generator
+              description: Generates a report with the usage of the analyzed DB
+              relationships:
+                - id: "365"
+                  tags: Relationship
+                  sourceId: "329"
+                  destinationId: "37"
+                  description: Report
+                  technology: sqlite
+                - id: "368"
+                  tags: Relationship
+                  sourceId: "329"
+                  destinationId: "37"
+                  description: Analyzer report information
+                  technology: sqlite
+              technology: Python
+              size: 0
+            - id: "328"
+              tags: Element,Component
+              url: https://www.wireshark.org/
+              name: Wireshark network analyzer
+              description: TShark sniffer
+              relationships:
+                - id: "369"
+                  tags: Relationship
+                  sourceId: "328"
+                  destinationId: "329"
+                  description: Analyzed data
+                  technology: TShark
+                - id: "364"
+                  tags: Relationship
+                  sourceId: "328"
+                  destinationId: "329"
+                  description: Wire information
+                  technology: TShark
+              technology: TShark
+              size: 0
+        - id: "22"
+          tags: Element,Container,FA:SCALEARC-6188,FA:SCALEARC-6187,FA:SCALEARC-6186,FA:SCALEARC-13093,FA:SCALEARC-6178,FA:SCALEARC-6179,FA:SCALEARC-6177,FA:SCALEARC-6180,FA:SCALEARC-6190,FA:SCALEARC-6182,FA:SCALEARC-6181,FA:SCALEARC-6185,FA:SCALEARC-6176,SE7:SCALEARC,FA:SCALEARC-6189,FA:SCALEARC-6191,FA:SCALEARC-6164,FA:SCALEARC-6192,FA:SCALEARC-6168,FA:SCALEARC-6170,FA:SCALEARC-6183,FA:SCALEARC-6172,FA:SCALEARC-6174,FA:SCALEARC-6184,FA:SCALEARC-6366
+          name: Traffic Manager
+          description: Handles DB protocol communication, authentication, caching, load balancing, connection pooling and query routing
+          relationships:
+            - id: "29"
+              tags: Relationship,Synchronous
+              sourceId: "22"
+              destinationId: "23"
+              description: Sends traffic information
+              technology: Filesystem
+              interactionStyle: Synchronous
+            - id: "342"
+              tags: Relationship
+              sourceId: "22"
+              destinationId: "314"
+              description: Notifies changes
+              technology: Unix/TCP socket
+            - id: "286"
+              tags: Relationship
+              sourceId: "22"
+              destinationId: "13"
+              description: Does load-balancing
+              technology: DB Wire Protocol
+            - id: "367"
+              tags: Relationship
+              sourceId: "22"
+              destinationId: "328"
+              description: TCP dumps
+              technology: Wireshark
+          technology: C/C++
+          components:
+            - id: "336"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/core/common/analytics
+              name: Analytics
+              description: Realtime analytics
+              technology: C/c++
+              size: 0
+            - id: "331"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/core/common/connection_mapper
+              name: Authentication offload
+              description: User session management
+              technology: C/C++
+              size: 0
+            - id: "326"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/core/common/pattern_manager
+              name: Cache processing
+              description: Cache the response elements
+              technology: C/C++
+              size: 0
+            - id: "321"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/core/mssql/idblb/lib/source/idb_connpool.c
+              name: Connection management and pooling
+              description: Connection multiplexor and connection pooling
+              relationships:
+                - id: "375"
+                  tags: Relationship
+                  sourceId: "321"
+                  destinationId: "23"
+                  description: Generates traffic
+                  technology: TCP
+                - id: "354"
+                  tags: Relationship
+                  sourceId: "321"
+                  destinationId: "13"
+                  description: Connections
+                  technology: DB Wire Protocol
+              technology: C/C++
+              size: 0
+            - id: "337"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/core/mssql/idblb/lib/source/idb_firewall.c
+              name: Firewall
+              description: Query execution security
+              technology: C/C++
+              size: 0
+            - id: "333"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/core/common/misc/source/idb_ha.c
+              name: High Availability
+              description: Split brain HA
+              technology: Corosync and Pacemaker
+              size: 0
+            - id: "322"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/core/common/prep_exec_split/source/prep_exec_split.c
+              name: Load balancing and routing
+              description: Load balances the queries among cluster nodes and routes specific queries to specific nodes
+              relationships:
+                - id: "355"
+                  tags: Relationship
+                  sourceId: "322"
+                  destinationId: "13"
+                  description: Load balance queries
+                  technology: DB Write Protocol
+              technology: C/C++
+              size: 0
+            - id: "334"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/core/common/connection_mapper/source/lb_dbqueue.c
+              name: Surge queue
+              description: Load regulator
+              technology: C/C++
+              size: 0
+        - id: "24"
+          tags: Element,Container,SE7:SCALEARC,FA:SCALEARC-6189,FA:SCALEARC-6163,FA:SCALEARC-15310,FA:SCALEARC-6169,FA:SCALEARC-6172,FA:SCALEARC-6149
+          name: Web Application
+          description: User interface of Scalearc
+          relationships:
+            - id: "343"
+              tags: Relationship
+              sourceId: "24"
+              destinationId: "315"
+              description: Operates Scalearc load balancer
+              technology: HTTPS
+            - id: "344"
+              tags: Relationship
+              sourceId: "24"
+              destinationId: "314"
+              description: Operates Scalearc load balancer
+              technology: HTTPS
+            - id: "28"
+              tags: Relationship,Synchronous
+              sourceId: "24"
+              destinationId: "25"
+              description: Uses API
+              technology: HTTPS
+              interactionStyle: Synchronous
+          technology: Sencha ExtJS
+          components:
+            - id: "318"
+              tags: Element,Component
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/ui
+              name: User console
+              description: Frontend framework to render Scalearc UI
+              relationships:
+                - id: "363"
+                  tags: Relationship
+                  sourceId: "318"
+                  destinationId: "25"
+                  description: Uses
+                  technology: HTTPS
+              technology: Sencha ExtJS
+              size: 0
+    - id: "15"
+      tags: Element,Software System,External system
+      name: Windows Active Directory
+      description: Provides domain-level accounts and users synchronization
+      location: External
+  deploymentNodes:
+    - id: "454"
+      tags: Element,Deployment Node
+      url: http://none
+      name: Customer computer
+      description: Customer computer
+      environment: HA
+      technology: Any
+      instances: 1
+      children:
+        - id: "458"
+          tags: Element,Deployment Node
+          name: Web browser
+          description: Web browser
+          environment: HA
+          technology: Chrome, Firefox, IE
+          instances: 1
+          containerInstances:
+            - id: "459"
+              tags: Container Instance
+              relationships:
+                - id: "472"
+                  sourceId: "459"
+                  destinationId: "471"
+                  description: Uses API
+                  technology: HTTPS
+                  linkedRelationshipId: "28"
+                - id: "490"
+                  sourceId: "459"
+                  destinationId: "489"
+                  description: Uses API
+                  technology: HTTPS
+                  linkedRelationshipId: "28"
+              environment: HA
+              instanceId: 1
+              containerId: "24"
+              properties: {}
+          children: []
+          softwareSystemInstances: []
+          infrastructureNodes: []
+      softwareSystemInstances: []
+      containerInstances: []
+      infrastructureNodes: []
+    - id: "467"
+      tags: Element,Deployment Node
+      url: http://none
+      name: HA
+      description: HA
+      environment: HA
+      instances: 1
+      children:
+        - id: "468"
+          tags: Element,Deployment Node
+          name: Master HA node
+          description: Master HA node
+          environment: HA
+          instances: 1
+          containerInstances:
+            - id: "477"
+              tags: Container Instance
+              environment: HA
+              instanceId: 1
+              containerId: "37"
+              properties: {}
+            - id: "471"
+              tags: Container Instance
+              relationships:
+                - id: "474"
+                  sourceId: "471"
+                  destinationId: "473"
+                  description: Generates logs
+                  technology: Filesystem
+                  linkedRelationshipId: "283"
+                - id: "512"
+                  sourceId: "471"
+                  destinationId: "511"
+                  description: Manages Traffic Analytics processes
+                  technology: Python
+                  linkedRelationshipId: "284"
+                - id: "478"
+                  sourceId: "471"
+                  destinationId: "477"
+                  description: Read / write configurations, get traffic analysis results
+                  technology: sqlite
+                  linkedRelationshipId: "41"
+                - id: "518"
+                  sourceId: "471"
+                  destinationId: "517"
+                  description: Sends config changes notifications
+                  technology: Unix/TCP socket
+                  linkedRelationshipId: "27"
+                - id: "497"
+                  sourceId: "471"
+                  destinationId: "496"
+                  description: Generates logs
+                  technology: Filesystem
+                  linkedRelationshipId: "283"
+                - id: "506"
+                  sourceId: "471"
+                  destinationId: "505"
+                  description: Read / write configurations, get traffic analysis results
+                  technology: sqlite
+                  linkedRelationshipId: "41"
+                - id: "481"
+                  sourceId: "471"
+                  destinationId: "480"
+                  description: Manages Traffic Analytics processes
+                  technology: Python
+                  linkedRelationshipId: "284"
+                - id: "484"
+                  sourceId: "471"
+                  destinationId: "483"
+                  description: Sends config changes notifications
+                  technology: Unix/TCP socket
+                  linkedRelationshipId: "27"
+              environment: HA
+              instanceId: 1
+              containerId: "25"
+              properties: {}
+            - id: "473"
+              tags: Container Instance
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/core/common/misc/source/log.c
+              environment: HA
+              instanceId: 1
+              containerId: "275"
+              properties: {}
+            - id: "475"
+              tags: Container Instance
+              relationships:
+                - id: "507"
+                  sourceId: "475"
+                  destinationId: "505"
+                  description: Read / write configurations
+                  technology: sqlite
+                  linkedRelationshipId: "91"
+                - id: "476"
+                  sourceId: "475"
+                  destinationId: "473"
+                  description: Operates logs
+                  technology: Filesystem
+                  linkedRelationshipId: "287"
+                - id: "519"
+                  sourceId: "475"
+                  destinationId: "517"
+                  description: Sends cluster changes notifications
+                  technology: Unix/TCP socket
+                  linkedRelationshipId: "30"
+                - id: "479"
+                  sourceId: "475"
+                  destinationId: "477"
+                  description: Read / write configurations
+                  technology: sqlite
+                  linkedRelationshipId: "91"
+                - id: "485"
+                  sourceId: "475"
+                  destinationId: "483"
+                  description: Sends cluster changes notifications
+                  technology: Unix/TCP socket
+                  linkedRelationshipId: "30"
+                - id: "498"
+                  sourceId: "475"
+                  destinationId: "496"
+                  description: Operates logs
+                  technology: Filesystem
+                  linkedRelationshipId: "287"
+              environment: HA
+              instanceId: 1
+              containerId: "26"
+              properties: {}
+            - id: "483"
+              tags: Container Instance
+              relationships:
+                - id: "486"
+                  sourceId: "483"
+                  destinationId: "480"
+                  description: Sends traffic information
+                  technology: Filesystem
+                  linkedRelationshipId: "29"
+                - id: "514"
+                  sourceId: "483"
+                  destinationId: "511"
+                  description: Sends traffic information
+                  technology: Filesystem
+                  linkedRelationshipId: "29"
+              environment: HA
+              instanceId: 1
+              containerId: "22"
+              properties: {}
+            - id: "487"
+              tags: Container Instance
+              relationships:
+                - id: "495"
+                  sourceId: "487"
+                  destinationId: "489"
+                  description: Uses API
+                  technology: HTTPS
+                  linkedRelationshipId: "28"
+                - id: "488"
+                  sourceId: "487"
+                  destinationId: "471"
+                  description: Uses API
+                  technology: HTTPS
+                  linkedRelationshipId: "28"
+              environment: HA
+              instanceId: 1
+              containerId: "24"
+              properties: {}
+            - id: "480"
+              tags: Container Instance
+              relationships:
+                - id: "482"
+                  sourceId: "480"
+                  destinationId: "477"
+                  description: Store traffic analytics
+                  technology: sqlite
+                  linkedRelationshipId: "40"
+                - id: "508"
+                  sourceId: "480"
+                  destinationId: "505"
+                  description: Store traffic analytics
+                  technology: sqlite
+                  linkedRelationshipId: "40"
+              environment: HA
+              instanceId: 1
+              containerId: "23"
+              properties: {}
+          children: []
+          softwareSystemInstances: []
+          infrastructureNodes: []
+        - id: "470"
+          tags: Element,Deployment Node
+          name: Slave HA node
+          description: Slave HA node
+          environment: HA
+          instances: 1
+          containerInstances:
+            - id: "505"
+              tags: Container Instance
+              environment: HA
+              instanceId: 1
+              containerId: "37"
+              properties: {}
+            - id: "489"
+              tags: Container Instance
+              relationships:
+                - id: "492"
+                  sourceId: "489"
+                  destinationId: "477"
+                  description: Read / write configurations, get traffic analysis results
+                  technology: sqlite
+                  linkedRelationshipId: "41"
+                - id: "493"
+                  sourceId: "489"
+                  destinationId: "480"
+                  description: Manages Traffic Analytics processes
+                  technology: Python
+                  linkedRelationshipId: "284"
+                - id: "521"
+                  sourceId: "489"
+                  destinationId: "517"
+                  description: Sends config changes notifications
+                  technology: Unix/TCP socket
+                  linkedRelationshipId: "27"
+                - id: "494"
+                  sourceId: "489"
+                  destinationId: "483"
+                  description: Sends config changes notifications
+                  technology: Unix/TCP socket
+                  linkedRelationshipId: "27"
+                - id: "499"
+                  sourceId: "489"
+                  destinationId: "496"
+                  description: Generates logs
+                  technology: Filesystem
+                  linkedRelationshipId: "283"
+                - id: "491"
+                  sourceId: "489"
+                  destinationId: "473"
+                  description: Generates logs
+                  technology: Filesystem
+                  linkedRelationshipId: "283"
+                - id: "509"
+                  sourceId: "489"
+                  destinationId: "505"
+                  description: Read / write configurations, get traffic analysis results
+                  technology: sqlite
+                  linkedRelationshipId: "41"
+                - id: "515"
+                  sourceId: "489"
+                  destinationId: "511"
+                  description: Manages Traffic Analytics processes
+                  technology: Python
+                  linkedRelationshipId: "284"
+              environment: HA
+              instanceId: 1
+              containerId: "25"
+              properties: {}
+            - id: "496"
+              tags: Container Instance
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/core/common/misc/source/log.c
+              environment: HA
+              instanceId: 1
+              containerId: "275"
+              properties: {}
+            - id: "517"
+              tags: Container Instance
+              relationships:
+                - id: "523"
+                  sourceId: "517"
+                  destinationId: "511"
+                  description: Sends traffic information
+                  technology: Filesystem
+                  linkedRelationshipId: "29"
+                - id: "520"
+                  sourceId: "517"
+                  destinationId: "480"
+                  description: Sends traffic information
+                  technology: Filesystem
+                  linkedRelationshipId: "29"
+              environment: HA
+              instanceId: 1
+              containerId: "22"
+              properties: {}
+            - id: "511"
+              tags: Container Instance
+              relationships:
+                - id: "516"
+                  sourceId: "511"
+                  destinationId: "505"
+                  description: Store traffic analytics
+                  technology: sqlite
+                  linkedRelationshipId: "40"
+                - id: "513"
+                  sourceId: "511"
+                  destinationId: "477"
+                  description: Store traffic analytics
+                  technology: sqlite
+                  linkedRelationshipId: "40"
+              environment: HA
+              instanceId: 1
+              containerId: "23"
+              properties: {}
+            - id: "500"
+              tags: Container Instance
+              relationships:
+                - id: "522"
+                  sourceId: "500"
+                  destinationId: "517"
+                  description: Sends cluster changes notifications
+                  technology: Unix/TCP socket
+                  linkedRelationshipId: "30"
+                - id: "503"
+                  sourceId: "500"
+                  destinationId: "483"
+                  description: Sends cluster changes notifications
+                  technology: Unix/TCP socket
+                  linkedRelationshipId: "30"
+                - id: "502"
+                  sourceId: "500"
+                  destinationId: "477"
+                  description: Read / write configurations
+                  technology: sqlite
+                  linkedRelationshipId: "91"
+                - id: "504"
+                  sourceId: "500"
+                  destinationId: "496"
+                  description: Operates logs
+                  technology: Filesystem
+                  linkedRelationshipId: "287"
+                - id: "510"
+                  sourceId: "500"
+                  destinationId: "505"
+                  description: Read / write configurations
+                  technology: sqlite
+                  linkedRelationshipId: "91"
+                - id: "501"
+                  sourceId: "500"
+                  destinationId: "473"
+                  description: Operates logs
+                  technology: Filesystem
+                  linkedRelationshipId: "287"
+              environment: HA
+              instanceId: 1
+              containerId: "26"
+              properties: {}
+            - id: "524"
+              tags: Container Instance
+              relationships:
+                - id: "526"
+                  sourceId: "524"
+                  destinationId: "489"
+                  description: Uses API
+                  technology: HTTPS
+                  linkedRelationshipId: "28"
+                - id: "525"
+                  sourceId: "524"
+                  destinationId: "471"
+                  description: Uses API
+                  technology: HTTPS
+                  linkedRelationshipId: "28"
+              environment: HA
+              instanceId: 1
+              containerId: "24"
+              properties: {}
+          children: []
+          softwareSystemInstances: []
+          infrastructureNodes: []
+      softwareSystemInstances: []
+      containerInstances: []
+      infrastructureNodes: []
+    - id: "462"
+      tags: Element,Deployment Node
+      url: http://none
+      name: Customer computer
+      description: Customer computer
+      environment: Standalone
+      technology: Any
+      instances: 1
+      children:
+        - id: "463"
+          tags: Element,Deployment Node
+          name: Web browser
+          description: Web browser
+          environment: Standalone
+          technology: Chrome, Firefox, IE
+          instances: 1
+          containerInstances:
+            - id: "464"
+              tags: Container Instance
+              relationships:
+                - id: "530"
+                  sourceId: "464"
+                  destinationId: "529"
+                  description: Uses API
+                  technology: HTTPS
+                  linkedRelationshipId: "28"
+              environment: Standalone
+              instanceId: 1
+              containerId: "24"
+              properties: {}
+          children: []
+          softwareSystemInstances: []
+          infrastructureNodes: []
+      softwareSystemInstances: []
+      containerInstances: []
+      infrastructureNodes: []
+    - id: "527"
+      tags: Element,Deployment Node
+      url: http://none
+      name: Standalone
+      description: Standalone
+      environment: Standalone
+      instances: 1
+      children:
+        - id: "528"
+          tags: Element,Deployment Node
+          name: Standalone
+          description: Standalone
+          environment: Standalone
+          instances: 1
+          containerInstances:
+            - id: "529"
+              tags: Container Instance
+              relationships:
+                - id: "532"
+                  sourceId: "529"
+                  destinationId: "531"
+                  description: Generates logs
+                  technology: Filesystem
+                  linkedRelationshipId: "283"
+                - id: "536"
+                  sourceId: "529"
+                  destinationId: "535"
+                  description: Read / write configurations, get traffic analysis results
+                  technology: sqlite
+                  linkedRelationshipId: "41"
+                - id: "549"
+                  sourceId: "529"
+                  destinationId: "548"
+                  description: Sends config changes notifications
+                  technology: Unix/TCP socket
+                  linkedRelationshipId: "27"
+                - id: "539"
+                  sourceId: "529"
+                  destinationId: "538"
+                  description: Manages Traffic Analytics processes
+                  technology: Python
+                  linkedRelationshipId: "284"
+              environment: Standalone
+              instanceId: 1
+              containerId: "25"
+              properties: {}
+            - id: "531"
+              tags: Container Instance
+              url: https://github.com/trilogy-group/scalearc-2015/tree/develop/src/core/common/misc/source/log.c
+              environment: Standalone
+              instanceId: 1
+              containerId: "275"
+              properties: {}
+            - id: "535"
+              tags: Container Instance
+              environment: Standalone
+              instanceId: 1
+              containerId: "37"
+              properties: {}
+            - id: "538"
+              tags: Container Instance
+              relationships:
+                - id: "540"
+                  sourceId: "538"
+                  destinationId: "535"
+                  description: Store traffic analytics
+                  technology: sqlite
+                  linkedRelationshipId: "40"
+              environment: Standalone
+              instanceId: 1
+              containerId: "23"
+              properties: {}
+            - id: "548"
+              tags: Container Instance
+              relationships:
+                - id: "551"
+                  sourceId: "548"
+                  destinationId: "538"
+                  description: Sends traffic information
+                  technology: Filesystem
+                  linkedRelationshipId: "29"
+              environment: Standalone
+              instanceId: 1
+              containerId: "22"
+              properties: {}
+            - id: "533"
+              tags: Container Instance
+              relationships:
+                - id: "550"
+                  sourceId: "533"
+                  destinationId: "548"
+                  description: Sends cluster changes notifications
+                  technology: Unix/TCP socket
+                  linkedRelationshipId: "30"
+                - id: "534"
+                  sourceId: "533"
+                  destinationId: "531"
+                  description: Operates logs
+                  technology: Filesystem
+                  linkedRelationshipId: "287"
+                - id: "537"
+                  sourceId: "533"
+                  destinationId: "535"
+                  description: Read / write configurations
+                  technology: sqlite
+                  linkedRelationshipId: "91"
+              environment: Standalone
+              instanceId: 1
+              containerId: "26"
+              properties: {}
+            - id: "552"
+              tags: Container Instance
+              relationships:
+                - id: "553"
+                  sourceId: "552"
+                  destinationId: "529"
+                  description: Uses API
+                  technology: HTTPS
+                  linkedRelationshipId: "28"
+              environment: Standalone
+              instanceId: 1
+              containerId: "24"
+              properties: {}
+          children: []
+          softwareSystemInstances: []
+          infrastructureNodes: []
+      softwareSystemInstances: []
+      containerInstances: []
+      infrastructureNodes: []
+documentation:
+  sections: []
+  decisions: []
+  images: []
+views:
+  systemContextViews:
+    - softwareSystemId: "1"
+      description: ScaleArc Context view
+      key: ScaleArc
+      paperSize: A5_Landscape
+      animations:
+        - order: 1
+          elements:
+            - "1"
+          relationships: []
+        - order: 2
+          elements:
+            - "3"
+          relationships:
+            - "279"
+        - order: 3
+          elements:
+            - "33"
+            - "34"
+            - "13"
+            - "4"
+            - "15"
+            - "16"
+          relationships:
+            - "18"
+            - "280"
+            - "281"
+            - "20"
+            - "10"
+            - "21"
+      enterpriseBoundaryVisible: true
+      elements:
+        - id: "33"
+          x: 225
+          y: 60
+        - id: "34"
+          x: 1710
+          y: 50
+        - id: "1"
+          x: 977
+          y: 645
+        - id: "13"
+          x: 227
+          y: 1245
+        - id: "3"
+          x: 250
+          y: 595
+        - id: "4"
+          x: 1735
+          y: 580
+        - id: "15"
+          x: 977
+          y: 1245
+        - id: "16"
+          x: 1727
+          y: 1245
+      relationships:
+        - id: "18"
+        - id: "280"
+        - id: "281"
+        - id: "21"
+        - id: "10"
+        - id: "20"
+        - id: "279"
+  containerViews:
+    - softwareSystemId: "1"
+      key: ScaleArcContainerDiagram
+      paperSize: A3_Landscape
+      animations:
+        - order: 1
+          elements:
+            - "22"
+            - "23"
+            - "24"
+            - "25"
+            - "26"
+          relationships:
+            - "27"
+            - "28"
+            - "29"
+            - "30"
+            - "284"
+        - order: 2
+          elements:
+            - "33"
+            - "34"
+          relationships:
+            - "35"
+            - "36"
+        - order: 3
+          elements:
+            - "37"
+          relationships:
+            - "91"
+            - "40"
+            - "41"
+        - order: 4
+          elements:
+            - "15"
+            - "16"
+          relationships:
+            - "46"
+            - "48"
+            - "282"
+        - order: 5
+          elements:
+            - "275"
+            - "13"
+            - "3"
+            - "4"
+          relationships:
+            - "286"
+            - "287"
+            - "277"
+            - "288"
+            - "278"
+            - "283"
+            - "31"
+      externalSoftwareSystemBoundariesVisible: true
+      elements:
+        - id: "33"
+          x: 2315
+          y: 2845
+        - id: "22"
+          x: 1250
+          y: 900
+        - id: "34"
+          x: 450
+          y: 890
+        - id: "23"
+          x: 2305
+          y: 1495
+        - id: "13"
+          x: 1250
+          y: 345
+        - id: "24"
+          x: 1260
+          y: 2165
+        - id: "25"
+          x: 2310
+          y: 2165
+        - id: "26"
+          x: 2305
+          y: 900
+        - id: "37"
+          x: 3310
+          y: 1495
+        - id: "15"
+          x: 2300
+          y: 340
+        - id: "16"
+          x: 4035
+          y: 1300
+        - id: "275"
+          x: 3310
+          y: 2165
+        - id: "3"
+          x: 1265
+          y: 2750
+        - id: "4"
+          x: 485
+          y: 2110
+      relationships:
+        - id: "91"
+        - id: "40"
+        - id: "41"
+        - id: "277"
+        - id: "288"
+        - id: "31"
+        - id: "278"
+        - id: "30"
+        - id: "286"
+        - id: "287"
+          vertices:
+            - x: 4555
+              y: 1050
+            - x: 4555
+              y: 2320
+        - id: "29"
+        - id: "28"
+        - id: "27"
+        - id: "36"
+        - id: "284"
+        - id: "35"
+        - id: "282"
+          vertices:
+            - x: 3480
+              y: 2015
+            - x: 4260
+              y: 2010
+        - id: "283"
+        - id: "46"
+        - id: "48"
+  componentViews:
+    - key: ScaleArcServicesComponentDiagram
+      paperSize: A3_Landscape
+      animations:
+        - order: 1
+          elements:
+            - "77"
+            - "67"
+            - "78"
+            - "68"
+            - "79"
+            - "69"
+            - "15"
+            - "16"
+            - "80"
+            - "70"
+            - "81"
+            - "71"
+            - "82"
+            - "72"
+            - "83"
+            - "73"
+            - "84"
+            - "74"
+            - "75"
+            - "86"
+            - "76"
+          relationships:
+            - "88"
+            - "87"
+        - order: 2
+          elements:
+            - "85"
+          relationships: []
+        - order: 3
+          elements:
+            - "37"
+          relationships:
+            - "92"
+        - order: 4
+          elements:
+            - "22"
+          relationships:
+            - "90"
+        - order: 5
+          elements:
+            - "275"
+            - "274"
+          relationships:
+            - "289"
+            - "290"
+            - "291"
+        - order: 6
+          elements:
+            - "13"
+          relationships: []
+      containerId: "26"
+      externalContainerBoundariesVisible: true
+      elements:
+        - id: "22"
+          x: 1810
+          y: 1250
+        - id: "67"
+          x: 1115
+          y: 735
+        - id: "68"
+          x: 3905
+          y: 1765
+        - id: "69"
+          x: 1620
+          y: 2200
+        - id: "274"
+          x: 3910
+          y: 2190
+        - id: "275"
+          x: 1815
+          y: 2850
+        - id: "70"
+          x: 2110
+          y: 2200
+        - id: "71"
+          x: 635
+          y: 1075
+        - id: "72"
+          x: 2110
+          y: 1760
+        - id: "73"
+          x: 640
+          y: 1760
+        - id: "74"
+          x: 2595
+          y: 1760
+        - id: "75"
+          x: 2090
+          y: 735
+        - id: "76"
+          x: 3085
+          y: 2210
+        - id: "77"
+          x: 3080
+          y: 1085
+        - id: "78"
+          x: 1620
+          y: 1760
+        - id: "13"
+          x: 1615
+          y: 95
+        - id: "79"
+          x: 3085
+          y: 1760
+        - id: "37"
+          x: 3900
+          y: 1080
+        - id: "15"
+          x: 3065
+          y: 80
+        - id: "16"
+          x: 2595
+          y: 2850
+        - id: "80"
+          x: 630
+          y: 735
+        - id: "81"
+          x: 3075
+          y: 740
+        - id: "82"
+          x: 3085
+          y: 1420
+        - id: "83"
+          x: 2575
+          y: 735
+        - id: "84"
+          x: 1130
+          y: 1760
+        - id: "85"
+          x: 1605
+          y: 735
+        - id: "86"
+          x: 635
+          y: 1415
+      relationships:
+        - id: "92"
+        - id: "299"
+        - id: "298"
+        - id: "297"
+        - id: "90"
+        - id: "292"
+        - id: "302"
+        - id: "291"
+        - id: "301"
+        - id: "290"
+        - id: "304"
+        - id: "303"
+        - id: "296"
+        - id: "295"
+        - id: "294"
+        - id: "300"
+        - id: "293"
+        - id: "309"
+        - id: "88"
+        - id: "306"
+        - id: "305"
+        - id: "308"
+        - id: "307"
+        - id: "87"
+        - id: "289"
+        - id: "313"
+        - id: "312"
+        - id: "311"
+        - id: "310"
+    - key: SystemDataStoreComponentDiagram
+      paperSize: A6_Landscape
+      animations:
+        - order: 1
+          elements:
+            - "330"
+            - "317"
+          relationships: []
+      containerId: "37"
+      externalContainerBoundariesVisible: false
+      elements:
+        - id: "330"
+          x: 1024
+          y: 433
+        - id: "317"
+          x: 274
+          y: 433
+      relationships: []
+    - key: TrafficManagerComponentDiagram
+      paperSize: A4_Landscape
+      animations:
+        - order: 1
+          elements:
+            - "331"
+            - "321"
+            - "333"
+            - "322"
+            - "334"
+            - "336"
+            - "326"
+            - "337"
+          relationships: []
+        - order: 2
+          elements:
+            - "34"
+            - "23"
+            - "13"
+          relationships:
+            - "375"
+            - "354"
+            - "355"
+            - "356"
+            - "357"
+            - "359"
+            - "360"
+      containerId: "22"
+      externalContainerBoundariesVisible: false
+      elements:
+        - id: "34"
+          x: 1620
+          y: 65
+        - id: "23"
+          x: 1290
+          y: 1875
+        - id: "331"
+          x: 83
+          y: 540
+        - id: "13"
+          x: 400
+          y: 1885
+        - id: "321"
+          x: 915
+          y: 1270
+        - id: "333"
+          x: 2955
+          y: 1265
+        - id: "322"
+          x: 90
+          y: 1265
+        - id: "334"
+          x: 830
+          y: 545
+        - id: "336"
+          x: 1560
+          y: 540
+        - id: "326"
+          x: 2265
+          y: 545
+        - id: "337"
+          x: 2950
+          y: 535
+      relationships:
+        - id: "359"
+        - id: "357"
+        - id: "356"
+        - id: "355"
+        - id: "354"
+        - id: "375"
+        - id: "360"
+    - key: WebApplicationComponentDiagram
+      paperSize: A5_Portrait
+      animations:
+        - order: 1
+          elements:
+            - "25"
+            - "318"
+          relationships: []
+        - order: 2
+          elements:
+            - "3"
+            - "4"
+          relationships: []
+      containerId: "24"
+      externalContainerBoundariesVisible: false
+      elements:
+        - id: "3"
+          x: 324
+          y: 440
+        - id: "25"
+          x: 649
+          y: 1740
+        - id: "4"
+          x: 1024
+          y: 440
+        - id: "318"
+          x: 649
+          y: 1140
+      relationships:
+        - id: "363"
+        - id: "362"
+        - id: "361"
+    - key: ApiServicesComponentDiagram
+      paperSize: A4_Landscape
+      animations:
+        - order: 1
+          elements:
+            - "33"
+            - "22"
+            - "24"
+            - "37"
+            - "16"
+            - "314"
+            - "315"
+          relationships:
+            - "341"
+            - "342"
+            - "343"
+            - "344"
+            - "345"
+            - "346"
+            - "348"
+            - "338"
+            - "349"
+            - "339"
+        - order: 2
+          elements:
+            - "13"
+          relationships:
+            - "286"
+            - "350"
+            - "351"
+      containerId: "25"
+      externalContainerBoundariesVisible: true
+      elements:
+        - id: "33"
+          x: 2466
+          y: 1690
+        - id: "22"
+          x: 591
+          y: 1090
+        - id: "13"
+          x: 1341
+          y: 490
+        - id: "24"
+          x: 966
+          y: 1690
+        - id: "37"
+          x: 1716
+          y: 1690
+        - id: "16"
+          x: 2091
+          y: 490
+        - id: "314"
+          x: 2091
+          y: 1090
+        - id: "315"
+          x: 1341
+          y: 1090
+      relationships:
+        - id: "351"
+        - id: "350"
+        - id: "286"
+        - id: "348"
+        - id: "346"
+        - id: "345"
+        - id: "344"
+          vertices:
+            - x: 1941
+              y: 1494
+        - id: "343"
+        - id: "342"
+          vertices:
+            - x: 1162
+              y: 1494
+            - x: 1312
+              y: 1592
+            - x: 1791
+              y: 1592
+            - x: 1941
+              y: 1494
+        - id: "341"
+          vertices:
+            - x: 1316
+              y: 1240
+        - id: "338"
+          vertices:
+            - x: 1941
+              y: 1494
+        - id: "339"
+        - id: "349"
+    - key: LogsRepositoryComponentDiagram
+      paperSize: A6_Landscape
+      animations:
+        - order: 1
+          elements:
+            - "316"
+          relationships: []
+      containerId: "275"
+      externalContainerBoundariesVisible: false
+      elements:
+        - id: "316"
+          x: 649
+          y: 470
+      relationships: []
+    - key: TrafficAnalyerComponentDiagram
+      paperSize: A5_Landscape
+      animations:
+        - order: 1
+          elements:
+            - "22"
+            - "37"
+            - "328"
+            - "329"
+          relationships: []
+        - order: 2
+          elements:
+            - "316"
+          relationships: []
+      containerId: "23"
+      externalContainerBoundariesVisible: false
+      elements:
+        - id: "22"
+          x: 235
+          y: 280
+        - id: "37"
+          x: 1739
+          y: 773
+        - id: "316"
+          x: 985
+          y: 285
+        - id: "328"
+          x: 239
+          y: 773
+        - id: "329"
+          x: 989
+          y: 773
+      relationships:
+        - id: "366"
+        - id: "367"
+        - id: "368"
+        - id: "369"
+  deploymentViews:
+    - softwareSystemId: "1"
+      description: ScaleArcServicesDeploymentDiagram
+      key: ScaleArcServicesDeploymentDiagram
+      paperSize: A3_Landscape
+      environment: HA
+      elements:
+        - id: "480"
+          x: 1010
+          y: 1985
+        - id: "470"
+          x: 0
+          y: 0
+        - id: "471"
+          x: 1020
+          y: 1390
+        - id: "483"
+          x: 1865
+          y: 1985
+        - id: "473"
+          x: 1010
+          y: 2610
+        - id: "496"
+          x: 3615
+          y: 2580
+        - id: "475"
+          x: 1865
+          y: 1390
+        - id: "454"
+          x: 0
+          y: 0
+        - id: "477"
+          x: 1865
+          y: 2610
+        - id: "489"
+          x: 3615
+          y: 1385
+        - id: "500"
+          x: 2835
+          y: 1980
+        - id: "511"
+          x: 3615
+          y: 1980
+        - id: "467"
+          x: 0
+          y: 0
+        - id: "468"
+          x: 0
+          y: 0
+        - id: "458"
+          x: 0
+          y: 0
+        - id: "459"
+          x: 2350
+          y: 455
+        - id: "505"
+          x: 2835
+          y: 2590
+        - id: "517"
+          x: 2835
+          y: 1390
+      relationships:
+        - id: "484"
+        - id: "485"
+        - id: "521"
+        - id: "522"
+        - id: "472"
+        - id: "503"
+        - id: "490"
+        - id: "519"
+    - softwareSystemId: "1"
+      description: ScalearcStandaloneDeploymetDiagram
+      key: ScalearcStandaloneDeploymetDiagram
+      paperSize: A4_Portrait
+      environment: Standalone
+      elements:
+        - id: "462"
+          x: 0
+          y: 0
+        - id: "463"
+          x: 0
+          y: 0
+        - id: "464"
+          x: 990
+          y: 490
+        - id: "531"
+          x: 1425
+          y: 2370
+        - id: "533"
+          x: 1425
+          y: 1890
+        - id: "535"
+          x: 640
+          y: 2385
+        - id: "548"
+          x: 645
+          y: 1415
+        - id: "538"
+          x: 640
+          y: 1890
+        - id: "527"
+          x: 0
+          y: 0
+        - id: "528"
+          x: 0
+          y: 0
+        - id: "529"
+          x: 1425
+          y: 1425
+      relationships:
+        - id: "530"
+        - id: "549"
+  configuration:
+    branding: {}
+    styles:
+      elements:
+        - tag: Person
+          background: '#0d3066'
+          color: '#ffffff'
+          shape: Person
+        - tag: Software System Main
+          background: '#031020'
+          color: '#ffffff'
+        - tag: Container
+          background: '#1651af'
+          color: '#ffffff'
+        - tag: Component
+          background: '#3578cb'
+          color: '#ffffff'
+        - tag: External system
+          background: '#0d3066'
+          color: '#ffffff'
+        - tag: Software System
+        - tag: Database
+          shape: Cylinder
+      relationships:
+        - tag: Relationship
+          dashed: true
+    terminology: {}
+    lastSavedView: ScaleArc
+    viewSortOrder: Default
+    themes: []
+  systemLandscapeViews: []
+  dynamicViews: []
+  filteredViews: []
