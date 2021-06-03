@@ -612,9 +612,9 @@ variables:
   version: 8.0.32
   DownloadedFileRegex: '\/(EverestInstallerStd-.(...)+.zip)'
   url_InsertAddressSQL: 'https://s3.amazonaws.com/everest.s3.dev/Attachments/EVCID/EVCID-20419/SQLs/INSERT_3_ADDR.sql'
-  url_TestEvcid20419Script: 'https://s3.amazonaws.com/everest.s3.dev/Attachments/EVCID/EVCID-20419/scripts/test-evcid-20419.ps1'
+  url_TestScript: 'https://s3.amazonaws.com/everest.s3.dev/Attachments/EVCID/EVCID-20419/scripts/test-evcid-20419.ps1'
   name_InsertAddressSQL: 'INSERT_3_ADDR.sql'
-  name_TestEvcid20419Script: 'test-evcid-20419.ps1'
+  name_TestScript: 'test-evcid-20419.ps1'
 credentials:
   - name: cred-client
     type: basic
