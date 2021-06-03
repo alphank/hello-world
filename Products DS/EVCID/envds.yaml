@@ -609,10 +609,6 @@ variables:
   varAddinACF: 'https://e2efiles.s3.amazonaws.com/AddIn.acf'
   varDotNetPath: 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\'
   varEverestClientHome: \Program Files (x86)\Icode\Everest\Client\
-  url_InsertAddressSQL: 'https://s3.amazonaws.com/everest.s3.dev/Attachments/EVCID/EVCID-20419/SQLs/INSERT_3_ADDR.sql'
-  url_TestEvcid20419Script: 'https://s3.amazonaws.com/everest.s3.dev/Attachments/EVCID/EVCID-20419/scripts/test-evcid-20419.ps1'
-  name_InsertAddressSQL: 'INSERT_3_ADDR.sql'
-  name_TestEvcid20419Script: 'test-evcid-20419.ps1'
   version: 8.0.32
   DownloadedFileRegex: '\/(EverestInstallerStd-.(...)+.zip)'
 credentials:
@@ -680,6 +676,12 @@ selectors:
     selectors:
       Confirmation_Yes: ''
     name: '0'
+  - group: EVCID-20577
+    selectors:
+    url_InsertAddressSQL: 'https://s3.amazonaws.com/everest.s3.dev/Attachments/EVCID/EVCID-20419/SQLs/INSERT_3_ADDR.sql'
+    url_TestEvcid20419Script: 'https://s3.amazonaws.com/everest.s3.dev/Attachments/EVCID/EVCID-20419/scripts/test-evcid-20419.ps1'
+    name_InsertAddressSQL: 'INSERT_3_ADDR.sql'
+    name_TestEvcid20419Script: 'test-evcid-20419.ps1'
   - group: EVCID-14906
     selectors:
       CRMClient: ''
